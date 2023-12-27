@@ -33,6 +33,9 @@ courses:{
     type:Array,
     default:[]
 },
+phoneNo:{
+    type:any,
+},
 isVerified: {
     type: Boolean,
     default:false,

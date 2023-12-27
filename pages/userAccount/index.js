@@ -9,6 +9,7 @@ function UserAccount(){
     const[user, setUser] = useState({})
     const [course,setCourse] = useState('');
     const [time,setTime] = useState('')
+    const [userToken, setToken] = useState('')
 
 
 
@@ -27,8 +28,10 @@ const logout = ()=>{
 }
 useEffect(async()=>{
 
-    if(JSON.parse(localStorage.getItem("userData")) !== undefined ){
+    if(JSON.parse(localStorage.getItem("userData")) !== undefined  || JSON.parse(localStorage.getItem("token"))){
         const userData = JSON.parse(localStorage.getItem("userData"))
+        const token = JSON.parse(localStorage.getItem("token"))
+        setToken(token)
     }
 
     else{
@@ -38,7 +41,7 @@ useEffect(async()=>{
    setUser(userData)
 },[user])
 
-if(!userToken){
+if(!userToken || userToken == ""){
     router.push("/authentication/login");
 
     return
