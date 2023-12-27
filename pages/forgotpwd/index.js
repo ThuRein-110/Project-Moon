@@ -99,14 +99,14 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         </FormControl>
         <FormControl>
           <FormLabel> New Password</FormLabel>
-          <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} />
+          <Input type='password' value={newpassword} onChange={(e)=>setPassword(e.target.value)} />
          
           
         </FormControl>
 
         <FormControl>
           <FormLabel> Confirm Password</FormLabel>
-          <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} />
+          <Input type='password' value={confirmPwd} onChange={(e)=>setPassword(e.target.value)} />
         
 
            <Button colorScheme='blue' onClick={resetPwd}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Reset Password</p>}</Button>

@@ -9,8 +9,8 @@ function UserAccount(){
     const [course,setCourse] = useState('');
     const [time,setTime] = useState('')
 
-const userToken = Json.parse(localStorage.getItem("token"))
-const userData = Json.parse(localStorage.getItem("usserData"))
+const userToken = JSON.parse(localStorage.getItem("token"))
+const userData = JSON.parse(localStorage.getItem("usserData"))
 
 const createTimer = async()=>{
     await axios.post("api/scheduler",{
