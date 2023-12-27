@@ -13,7 +13,7 @@ const userData = Json.parse(localStorage.getItem("usserData"))
 const createTimer = async()=>{
     axios.post("api/scheduler",{
         course:course,
-        time:
+        time:"time"
     })
 }
 
@@ -40,7 +40,7 @@ else{
 
         </div>
         <div>
-            
+
         </div>
        </div>
         </>
