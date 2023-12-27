@@ -6,6 +6,7 @@ import axios from "axios"
 
 function UserAccount(){
     const[user, setUser] = useState({})
+    const [course,setCourse] = useState('')
 
 const userToken = Json.parse(localStorage.getItem("token"))
 const userData = Json.parse(localStorage.getItem("usserData"))
