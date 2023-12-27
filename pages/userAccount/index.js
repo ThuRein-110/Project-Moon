@@ -27,8 +27,14 @@ const logout = ()=>{
 }
 useEffect(async()=>{
 
-    const userToken = JSON.parse(localStorage.getItem("token"))
-const userData = JSON.parse(localStorage.getItem("userData"))
+    if(JSON.parse(localStorage.getItem("userData")) !== undefined ){
+        const userData = JSON.parse(localStorage.getItem("userData"))
+    }
+
+    else{
+        const userData = {}
+    }
+
    setUser(userData)
 },[user])
 
