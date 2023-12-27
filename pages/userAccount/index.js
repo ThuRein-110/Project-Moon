@@ -11,9 +11,11 @@ const userToken = Json.parse(localStorage.getItem("token"))
 const userData = Json.parse(localStorage.getItem("usserData"))
 
 const createTimer = async()=>{
-    axios.post("api/scheduler",{
+    await axios.post("api/scheduler",{
         course:course,
         time:"time"
+    }).then((response)=>{
+        console.log("time")
     })
 }
 
