@@ -14,14 +14,14 @@ const userData = Json.parse(localStorage.getItem("usserData"))
 
 const createTimer = async()=>{
     await axios.post("api/scheduler",{
-        email:userData.email,
+        email:userData?.email,
         course:course,
         time:time
     }).then((response)=>{
         console.log("time")
     })
 }
-const logout = (){
+const logout = ()=>{
     localStorage.removeItem("token")
     router.push("/authentication/login")
 }

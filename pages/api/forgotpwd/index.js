@@ -11,9 +11,9 @@ export async function POST(){
            const user = await User.findOne({email:email})
 // check if user email exists
             if(user){
-                const updateUser = await User.findOneAndUpdate({email:email},{{"password":newpassword}})
+               // const updateUser = await User.findOneAndUpdate({email:email},{{"password":newpassword}})
 
-                await User.save();
+               // await User.save();
 
                 return NextResponse.json({mesaage:"Password changed successfully" }, {status:200})
             }
