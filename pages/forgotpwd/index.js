@@ -21,9 +21,10 @@ import {ImSpinner8} from 'react-icons/im'
       import { Button, ButtonGroup } from '@chakra-ui/react'
       import {useRouter} from "next/navigation"
 
-function Login() {
+function ResetPwd() {
 const [email,setEmail] = useState("")
-const [password,setPassword] = useState("")
+const [newpassword,setnewPassword] = useState("")
+const [confirmPwd, setconfirmPwd] = useState('')
 const [isError, setError] = useState(false)
 const [loading, setLoading]= useState('')
 const [errMessage, setErrorMessage] = useState('')
@@ -31,39 +32,41 @@ const [success,setSuccess] = useState(false)
 const router = useRouter()
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  const loginInUser = async(e)=>{
 
+
+  const resetPwd = async(e)=>{
     e.preventDefault();
 
     setSuccess(true)
+    if(newpassword !== "" || email !== "" || confirmPwd !== ""  ){
 
-    if(password !== "" || email !== "" ){
-
+      if(newpassword !== confirmPwd){
+        toast("Passwords are not the same", {autoClose:1000,type:'error',position:'top-right'})
+        setSuccess(false);
+        return;
+      }
       if(emailRegex.test(email) == false){
         toast('Email is not valid',{autoClose:1000,type:'error',position:'top-right'})
         setSuccess(false);
         return;
     }
 
-
     try{
-      await axios.post("/api/login",{
+      await axios.post("/api/forgotpwd",{
         
          email:email,
-         password:password,
+         newpassword:newpassword,
+         confirmPwd:confirmPwd
        }).then((response)=>{
-         console.log(response)
-        const userToken = localStorage.getItem("token")
-        if(!userToken){
-          localStorage.setItem("token", response.data.token)
-         
-        }
-        else{
-          return
-        }
+        toast(response.data.message,{autoClose:1000,type:'success',position:'top-right'})
+         console.log(response.data.message);
+         router.push("/authentication/login")
+        
+       
 
 
        }).catch((err)=>{
+        toast(err.message,{autoClose:1000,type:'error',position:'top-right'})
            console.log(err.message)
        })
    }
@@ -72,19 +75,11 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
        console.log(error.message)
    } 
    finally{
-     setLoading(false)
+     setSuccess(false)
    }
-
-    }
-
-
-    else{
-      
-      toast('Fields are empty, check',{autoClose:1000,type:'error',position:'top-right'})
-      setSuccess(false)
-
     }
    
+    
     
    
   }
@@ -95,7 +90,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         <>
         <div className="w-[50%] m-auto mt-[10%]">
           <div>
-            <h2 className="text-center text-2xl font-bold">Login</h2>
+            <h2 className="text-center text-2xl font-bold">Reset Password</h2>
           </div>
          <FormControl>
           <FormLabel>Email</FormLabel>
@@ -103,17 +98,21 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         
         </FormControl>
         <FormControl>
-          <FormLabel>Password</FormLabel>
+          <FormLabel> New Password</FormLabel>
           <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} />
+         
           
-
-           <Button colorScheme='blue' onClick={loginInUser}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Login</p>}</Button>
         </FormControl>
 
-        <div className="flex justify-between">
-              <p>Do not have an account? <span className="text-red-600 cursor-pointer" onClick={()=> router.push("/authentication/signup")}>sign up</span></p>
-              <p className="text-red-600 cursor-pointer" onClick={()=>router.push("/forgotpwd")}>Forgot password?</p>
-        </div>
+        <FormControl>
+          <FormLabel> Confirm Password</FormLabel>
+          <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} />
+        
+
+           <Button colorScheme='blue' onClick={resetPwd}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Reset Password</p>}</Button>
+        </FormControl>
+
+       
        
         </div>
         </>
@@ -124,4 +123,4 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   
 
 
-export default Login
+export default ResetPwd;
