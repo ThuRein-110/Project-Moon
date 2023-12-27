@@ -1,7 +1,7 @@
 "use client"
 
 
-
+import {useRouter} from "next/navigation"
 import React, {useEffect,useState} from "react"
 import axios from "axios"
 
@@ -10,6 +10,7 @@ function UserAccount(){
     const [course,setCourse] = useState('');
     const [time,setTime] = useState('')
     const [userToken, setToken] = useState('')
+    const router = useRouter();
 
 
 
@@ -28,14 +29,16 @@ const logout = ()=>{
 }
 useEffect(async()=>{
 
-    if(JSON.parse(localStorage.getItem("userData")) !== undefined  || JSON.parse(localStorage.getItem("token"))){
+    if(JSON.parse(localStorage.getItem("userData")) !== undefined  || JSON.parse(localStorage.getItem("token")) !== undefined){
         const userData = JSON.parse(localStorage.getItem("userData"))
         const token = JSON.parse(localStorage.getItem("token"))
         setToken(token)
+        setUser(userData)
     }
 
     else{
         const userData = {}
+        setUser(userData)
     }
 
    setUser(userData)
