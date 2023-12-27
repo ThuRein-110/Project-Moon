@@ -32,7 +32,7 @@ matno:{
 courses:{
     type:Array,
     default:[]
-}
+},
 isVerified: {
     type: Boolean,
     default:false,
