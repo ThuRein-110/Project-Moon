@@ -87,6 +87,7 @@ function Signup() {
         setDept('')
         setSemester('')
         toast(response.data.message, {autoClose:1000, type:'success', position:'top-right'})
+        localStorage.setItem('userData', response.data.userData)
     }).catch((err)=>{
         if(err){
             toast(err.message,{autoClose:1000,type:'error',position:'top-right'})

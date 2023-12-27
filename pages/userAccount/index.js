@@ -1,20 +1,20 @@
 "use client"
+
+
+
 import React, {useEffect,useState} from "react"
 import axios from "axios"
-
-
 
 function UserAccount(){
     const[user, setUser] = useState({})
     const [course,setCourse] = useState('');
     const [time,setTime] = useState('')
 
-const userToken = JSON.parse(localStorage.getItem("token"))
-const userData = JSON.parse(localStorage.getItem("usserData"))
+
 
 const createTimer = async()=>{
     await axios.post("api/scheduler",{
-        email:userData?.email,
+        email:user?.email,
         course:course,
         time:time
     }).then((response)=>{
@@ -26,11 +26,10 @@ const logout = ()=>{
     router.push("/authentication/login")
 }
 useEffect(async()=>{
-    await axios.get("api/profile",{
-        email:userData.email
-    }).then((response)=>{
-        setUser(response.data.userData)
-    })
+
+    const userToken = JSON.parse(localStorage.getItem("token"))
+const userData = JSON.parse(localStorage.getItem("userData"))
+   setUser(userData)
 },[user])
 
 if(!userToken){
