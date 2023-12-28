@@ -1,6 +1,5 @@
 "use client"
 
-
 import {useRouter} from "next/navigation"
 import React, {useEffect,useState} from "react"
 import axios from "axios"
@@ -28,8 +27,9 @@ const logout = ()=>{
     router.push("/authentication/login")
 }
 useEffect(async()=>{
+    
 
-    if(JSON.parse(localStorage.getItem("userData")) !== undefined  || JSON.parse(localStorage.getItem("token")) !== undefined){
+    if(localStorage.getItem("userData") !== undefined  || localStorage.getItem("token") !== undefined){
         const userData = JSON.parse(localStorage.getItem("userData"))
         const token = JSON.parse(localStorage.getItem("token"))
         setToken(token)
@@ -39,24 +39,30 @@ useEffect(async()=>{
     else{
         const userData = {}
         setUser(userData)
+       router.push("/authentication/login");
+    return
     }
 
    setUser(userData)
-},[user])
+},[])
 
-if(!userToken || userToken == ""){
-    router.push("/authentication/login");
 
-    return
-}
 
-else{
+
  return(
 
         <>
        <div className="">
 
-        <div>
+        <div className="h-[50px] flex ">
+            <div>
+                <div><h1>{user?.name}<h1></div>
+                <div>
+                    <span>{user?.matno}</span> &nbsp;&nbsp; <span>{user?.dept}</span>
+                </div>
+            </div>
+
+            <div></div>
 
         </div>
 
@@ -76,7 +82,7 @@ else{
        </div>
         </>
     )
-}
+
 
    
 }

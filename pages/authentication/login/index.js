@@ -54,8 +54,11 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
        }).then((response)=>{
          console.log(response)
         const userToken = localStorage.getItem("token")
-        if(!userToken){
+        if(userToken !== undefined){
           localStorage.setItem("token", response.data.token)
+          setTimeout(()=>{
+            router.push("/userAccount")
+          }, 5000)
          
         }
         else{
