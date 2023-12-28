@@ -56,7 +56,7 @@ useEffect(async()=>{
 
         <div className="h-[50px] flex ">
             <div>
-                <div><h1>{user?.name}<h1></div>
+                <div><h1>{user?.name}</h1></div>
                 <div>
                     <span>{user?.matno}</span> &nbsp;&nbsp; <span>{user?.dept}</span>
                 </div>
