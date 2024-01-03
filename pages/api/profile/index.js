@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server"
 import bcryptjs from "bcryptjs"
 
 
-export async function GET(){
+export async function GET(NextRequest,NextResponse){
 connect()
 const reqBody = await NextRequest.json();
             const{email} = reqBody

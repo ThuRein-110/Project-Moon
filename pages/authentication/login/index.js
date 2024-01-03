@@ -110,7 +110,7 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
           <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} />
           
 
-           <Button colorScheme='blue' onClick={loginInUser}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Login</p>}</Button>
+           <Button colorScheme='red' onClick={loginInUser}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Login</p>}</Button>
         </FormControl>
 
         <div className="flex justify-between">

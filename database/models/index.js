@@ -34,7 +34,7 @@ courses:{
     default:[]
 },
 phoneNo:{
-    type:any,
+    type:Number,
 },
 isVerified: {
     type: Boolean,
@@ -46,6 +46,6 @@ verifyToken: String,
 verifyTokenExpiry: Date
 })
 
-const User = mongoose.models.users || mongoose.model("Users",userSchema)
+const User = mongoose.models.users || mongoose.model("users",userSchema)
 
 export default User;

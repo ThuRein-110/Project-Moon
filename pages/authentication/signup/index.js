@@ -12,8 +12,8 @@ import {
 
   import { Button, ButtonGroup } from '@chakra-ui/react'
   import {useRouter} from "next/navigation"
-  import 'react-toastify/dist/ReactToastify.css'
-  import { ToastContainer } from 'react-toastify'
+  import 'react-toastify/dist/ReactToastify.css';
+  import { ToastContainer, toast } from 'react-toastify'
   import axios from 'axios'
   import {ImSpinner8} from 'react-icons/im'
 
@@ -39,7 +39,7 @@ function Signup() {
 
     const submit = async(e)=>{
       e.preventDefault();
-      setSuccess(true)
+      setSuccess(true);
 
       if(name !== "" || email !== "" || phone !== "" || dept !=="" || level !== "" || semester !== "" || matno !== ""){
 
@@ -69,15 +69,15 @@ function Signup() {
       username:name,
       email:email,
       password:password,
-      level:level,
       dept:dept,
+      level:level,
       semester:semester,
       matno:matno,
       phone: phone
     },
    ).then((response)=>{
         setSuccess(false)
-        setReg(true)
+     
         setEmail('')
         setName('')
         setPhone('')
@@ -102,7 +102,7 @@ function Signup() {
    
       toast('Fields are empty, check',{autoClose:1000,type:'error',position:'top-right'})
       setSuccess(false)
-      isError(true)
+ 
      }
        
     }
@@ -122,7 +122,7 @@ function Signup() {
 
     <FormControl>
       <FormLabel>Department</FormLabel>
-      <Input type='email' value={dept} onChange={(e)=>setDept(e.target.value)}  placeholder="Information Technology"/>
+      <Input type='text' value={dept} onChange={(e)=>setDept(e.target.value)}  placeholder="Information Technology"/>
      
     </FormControl>
 
@@ -131,7 +131,7 @@ function Signup() {
 <div className="flex flex-row gap-3 ">
 <FormControl>
       <FormLabel>Level</FormLabel>
-      <Input type='text' value={email} onChange={(e)=>setLevel(e.target.value)}  placeholder="200 lvl" />
+      <Input type='text' value={level} onChange={(e)=>setLevel(e.target.value)}  placeholder="200 lvl" />
       
     </FormControl>
 
@@ -157,7 +157,16 @@ function Signup() {
       
     </FormControl></div>
 
-    <Button colorScheme='blue' onClick={submit}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Register</p>}</Button>
+    <div className="flex gap-3">
+
+<FormControl>
+ <FormLabel>Phone No</FormLabel>
+ <Input type='text' value={phone} onChange={(e)=>setPhone(e.target.value)}  placeholder="Email"/>
+
+</FormControl>
+</div>
+<br/>
+    <Button colorScheme='red' onClick={submit}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Register</p>}</Button>
     <div className="flex justify-center items-center">
               <p>Already have an account? <span className="text-red-600 cursor-pointer" onClick={()=> router.push("/authentication/login")}>login</span></p>
              

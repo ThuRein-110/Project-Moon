@@ -3,15 +3,15 @@ import User from "../../../database/models"
 import { NextRequest, NextResponse } from "next/server"
 import bcryptjs from "bcryptjs"
 
-export async function POST(){
+export async function POST(NextRequest,NextResponse){
     connect()
     try{
             const reqBody = await NextRequest.json();
-            const{email,course,time} = reqBody
+            const{email,course,time,venue} = reqBody
            const user = await User.findOne({email:email})
 // check if user email exists
             if(user){
-                const updateUser = await User.findOneAndUpdate({email:email},{$push:{"course":{course,time}}})
+                const updateUser = await User.findOneAndUpdate({email:email},{$push:{"course":{course,time,venue}}})
 
                 await User.save();
 

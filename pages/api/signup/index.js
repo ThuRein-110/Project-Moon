@@ -3,12 +3,12 @@ import User from "../../../database/models"
 import { NextRequest, NextResponse } from "next/server"
 import bcryptjs from "bcryptjs"
 
-export async function POST(){
+export async function POST(NextRequest,NextResponse){
     connect()
     try{
             const reqBody = await NextRequest.json();
-            const{username,email,password,dept,level,semester,matno} = reqBody
-           const user = await User.findOne({email:email})
+            const{username,email,password,dept,level,semester,matno,phone} = reqBody
+           const user = await User.findOne({email:email});
 // check if user email exists
             if(user){
                 return NextResponse.json({message:"User Email already exists"}, {status:400})
@@ -26,7 +26,8 @@ export async function POST(){
                 dept:dept,
                 level:level,
                 semester:semester,
-                matno:matno
+                matno:matno,
+                phoneNo:phone
 
              })
             await newUser.save();
