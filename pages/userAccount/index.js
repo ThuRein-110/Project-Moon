@@ -115,7 +115,7 @@ const logout = ()=>{
                     dummy.map((item,index)=>{
                        if(item.day == "Monday"){
                         return(
-                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
@@ -132,7 +132,7 @@ const logout = ()=>{
                     dummy.map((item,index)=>{
                        if(item.day == "Tuesday"){
                         return(
-                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
@@ -148,7 +148,7 @@ const logout = ()=>{
                     dummy.map((item,index)=>{
                        if(item.day == "Wednesday"){
                         return(
-                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
@@ -166,7 +166,7 @@ const logout = ()=>{
                     dummy.map((item,index)=>{
                        if(item.day == "Thursday"){
                         return(
-                            <div className="mb-[10px] gap-3 flex">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>   {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] gap-3 flex" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>   {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
