@@ -4,7 +4,7 @@ import {useRouter} from "next/navigation"
 import React, {useEffect,useState,useContext} from "react"
 import axios from "axios"
 import { Button, ButtonGroup } from '@chakra-ui/react'
-import {firebaseapp} from "../Firebase"
+import {firebaseapp} from "../../Firebase"
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"
