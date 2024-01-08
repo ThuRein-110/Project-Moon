@@ -89,12 +89,12 @@ const logout = ()=>{
  return(
 
         <>
-       <div className="mt-[100px] w-[50%] m-auto flex justify-center align-center text-sm ">
+       <div className="md:mt-[40px] md:w-[50%] m-auto flex justify-center align-center text-sm flex-col mt-[0px]">
 
         <div className="h-[50px] flex flex-col ">
         
             <div className="bg-red-600 text-white w-[500px] pl-[10px] pt-[10px] pr-[10px] pb-[10px] text-sm text-bold flex justify-between align-center">
-                <div><h1>{user?.name} Ekweaga Charles - 500lvl <span>{user?.matno} </span></h1>
+                <div><h1 className="font-bold">{user?.name} EKWEAGA CHARLES - 500lvl <span>{user?.matno} </span></h1>
                 <div>
                 <span>{user?.dept} Information Technology</span>
                 </div>
@@ -103,12 +103,12 @@ const logout = ()=>{
 
                  <div>
                 <span>{user?.dept} IFT/17/2433</span><br/>
-                <button colorScheme='white' onClick={logout}><p className="text-[13px] bg-white text-red-600 p-[3px]">Logout</p></button>
+              
                 </div>
                 
             </div>
 
-            <div className="mt-[20px]">
+            <div className="mt-[20px] md:p-0 p-3">
                 <h1 className="mb-[10px] font-bold">MONDAY</h1>
                 {
                     
@@ -125,7 +125,7 @@ const logout = ()=>{
 
 
 
-            <div>
+            <div className=" md:p-0 p-3">
                 <h1 className="mb-[10px] font-bold">TUESDAY</h1>
                 {
                     
@@ -141,7 +141,7 @@ const logout = ()=>{
 
 <br/>
 
-            <div>
+            <div className=" md:p-0 p-3">
                 <h1 className="mb-[10px] font-bold">WEDNESDAY</h1>
                 {
                     
@@ -159,7 +159,7 @@ const logout = ()=>{
 
 <br/>
 
-            <div>
+            <div className=" md:p-0 p-3">
                 <h1 className="mb-[10px] font-bold">THURSDAY</h1>
                 {
                     
@@ -172,22 +172,30 @@ const logout = ()=>{
                     })
                 }
             </div>
+<br/>
+            <div className="flex ">
 
+<button colorScheme='white' onClick={logout}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[500px] font-bold text-2xl">LOGOUT</p></button></div>
 
         </div>
-
+      
 
         <div>
 
         
-            
+        
 
 
         </div>
 
-
+      
        </div>
+      
         </>
+
+       
+        
+        
     )
 
 

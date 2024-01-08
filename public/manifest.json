@@ -1,6 +1,11 @@
 {
     "name": "RemindMe",
     "short_name": "RemindMe",
+    "start_url" :"/",
+    "display":"standalone",
+    "scope":"/",
+    "theme_color":"#35155D",
+    "background_color":"#fffff",
     "icons": [
       {
         "src": "/icons/android-chrome-192x192.png",

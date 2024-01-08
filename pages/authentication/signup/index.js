@@ -121,7 +121,7 @@ function Signup() {
     }
   return (
     <>
- <div className="w-[50%] m-auto mt-[10%]">
+ <div className="w-[50%] m-auto mt-[50px]">
  <div>
             <h2 className="text-center text-2xl font-bold">Sign Up</h2>
           </div>
@@ -139,7 +139,7 @@ function Signup() {
      
     </FormControl>
 
-          </div>
+          </div><br/>
 
 <div className="flex flex-row gap-3 ">
 <FormControl>
@@ -155,7 +155,7 @@ function Signup() {
      
     </FormControl>
 </div>
-    
+    <br/>
 
     <div className="flex gap-3">
 
@@ -165,16 +165,12 @@ function Signup() {
      
     </FormControl>
 
-    <FormControl>
-      <FormLabel>Password</FormLabel>
-      <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}  placeholder="Email"/>
-     
-    </FormControl>
+   
     <FormControl>
       <FormLabel>Semester</FormLabel>
       <Input type='text' value={semester} onChange={(e)=>setSemester(e.target.value)} placeholder="first semester" />
       
-    </FormControl></div>
+    </FormControl></div><br/>
 
     <div className="flex gap-3">
 
@@ -183,11 +179,17 @@ function Signup() {
  <Input type='text' value={phone} onChange={(e)=>setPhone(e.target.value)}  placeholder="Email"/>
 
 </FormControl>
+
+<FormControl>
+      <FormLabel>Password</FormLabel>
+      <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}  placeholder="password"/>
+     
+    </FormControl>
 </div>
 <br/>
-    <Button colorScheme='red' onClick={submit}>{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Register</p>}</Button>
-    <div className="flex justify-center items-center">
-              <p>Already have an account? <span className="text-red-600 cursor-pointer" onClick={()=> router.push("/authentication/login")}>login</span></p>
+    <Button colorScheme='red' onClick={submit} className="w-[350px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Register</p>}</Button>
+    <div className="flex justify-center items-center mt-3">
+              <p>Already have an account? <span className="text-red-600 cursor-pointer font-bold" onClick={()=> router.push("/authentication/login")}>LOGIN</span></p>
              
         </div>
 

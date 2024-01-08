@@ -57,7 +57,7 @@ useEffect(()=>{
  return(
 
         <>
-       <div className="mt-[160px] w-[50%] m-auto flex justify-center align-center text-sm ">
+       <div className="md:mt-[140px] w-[50%] m-auto flex justify-center align-center text-sm mt-[200px] ">
 
         
             
@@ -65,26 +65,26 @@ useEffect(()=>{
 
         <div>
 
-            <h1 className="font-bold text-3xl mb-[20px]">Enter Your Lectures Details</h1>
+            <h1 className="font-bold text-3xl mb-[25px]">Enter Your Lectures Details</h1>
 
-        <div><label className="font-bold text-red-600 mb-[10px]">Course title</label><br/>
+        <div><label className="font-bold text-red-600 mb-[10px] text-[20px]">Course title</label><br/>
         <input type="text" value={course} onChange={(e)=>setCourse(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
 
-        <div><label className="font-bold text-red-600 mb-[10px]" >Venue</label><br/>
+        <div><label className="font-bold text-red-600 mb-[10px] text-[20px]" >Venue</label><br/>
         <input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
 
-            <div><label for="appt" className="font-bold text-red-600 mb-[10px]">Time</label><br/>
+            <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[20px]">Time</label><br/>
 
           <input type="time" id="appt" name="appt" className="w-[250px]" required value={time} onChange={(e)=>setTime(e.target.value)} />
           
           </div><br/>
 
           <div>
-          <label for="appt" className="font-bold text-red-600 mb-[10px]">Date</label><br/>
+          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[20px]">Date</label><br/>
           <input type="date" id="appt" name="appt"  required value={courseDate} onChange={(e)=>setcourseDate(e.target.value)} className="w-[200px] mt-2" />
           </div>
 <br/>
-          <Button colorScheme='red' onClick={createTimer}>Save</Button>
+          <Button colorScheme='red' onClick={createTimer} className="w-[300px] mt-3">Save</Button>
 
 
         </div>
