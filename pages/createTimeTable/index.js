@@ -10,7 +10,7 @@ import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"
 import { updateDoc,arrayUnion, onSnapshot } from "firebase/firestore"; 
 import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "firebase/storage";
-import { Auth } from '../Firebase/context';
+import { Auth } from '../../Firebase/context';
 
 function UserAccount(){
     

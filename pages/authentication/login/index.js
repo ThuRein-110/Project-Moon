@@ -21,7 +21,7 @@ import {ImSpinner8} from 'react-icons/im'
  import { Button, ButtonGroup } from '@chakra-ui/react'
  import {useRouter} from "next/navigation"
  import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
-import {firebaseapp} from "../../Firebase"
+import {firebaseapp} from "../../../Firebase"
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"

@@ -18,7 +18,7 @@ import { ToastContainer } from 'react-toastify'
 import axios from 'axios'
 import {ImSpinner8} from 'react-icons/im'
 import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
-import {firebaseapp} from "../../Firebase"
+import {firebaseapp} from "../../../Firebase"
 import {getFirestore} from "firebase/firestore"
 import {getAuth} from  "firebase/auth";
 import {setDoc,doc} from "firebase/firestore"
