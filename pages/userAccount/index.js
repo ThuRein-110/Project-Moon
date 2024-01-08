@@ -17,50 +17,58 @@ function UserAccount(){
         course:"IFT 506",
         time:"10:00am - 12pm",
         venue:"CSC Lab",
-        day:"Monday"
+        day:"Monday",
+        id:1
     },
     {
         course:"CSC 508",
         time:"4:00pm - 6:00pm",
         venue:"CSC Lab",
-        day:"Monday"
+        day:"Monday",
+        id:2
     },
 
     {
         course:"IFT 504",
         time:"2:00pm - 4:00pm",
         venue:"IFT Lab",
-        day:"Tuesday"
+        day:"Tuesday",
+        id:3
     },
     {
         course:"IFT 512",
         time:"9:00am - 10:00am",
         venue:"IFT LR2",
-        day:"Wednesday"
+        day:"Wednesday",
+        id:4
     },
     {
         course:"IFT 502",
         time:"2:00pm - 4:00pm",
         venue:"CSC Lab",
-        day:"Wednesday"
+        day:"Wednesday",
+        id:5
     },
     {
         course:"IFT 508",
         time:"10:00am - 12:00pm",
         venue:"IFT Lab",
-        day:"Thursday"
+        day:"Thursday",
+        id:6
     },
     {
         course:"IFT 510",
         time:"2:00pm - 4:00pm",
         venue:"EFT",
-        day:"Thursday"
+        day:"Thursday",
+        id:7
     },
     {
         course:"CSC 514",
         time:"4:00pm - 6:00pm",
         venue:"CSC Lab",
-        day:"Thursday"
+        day:"Thursday",
+        id:8
     }
 
 
@@ -68,37 +76,12 @@ function UserAccount(){
 
 
 
-const createTimer = async()=>{
-    await axios.post("api/scheduler",{
-        email:user?.email,
-        course:course,
-        time:time
-    }).then((response)=>{
-        console.log("time")
-    })
-}
+
 const logout = ()=>{
     localStorage.removeItem("token")
     router.push("/authentication/login")
 }
-useEffect(()=>{
-    alert("Course: CSC 514 || Time: 4:00pm - 6:00pm || CSC lab || Venue:Thursday")
 
-    if(localStorage.getItem("userData") !== undefined  || localStorage.getItem("token") !== undefined){
-        const userData = JSON.stringify(localStorage.getItem("userData")) 
-        const token = JSON.stringify(localStorage.getItem("token"))
-        setToken(token)
-        setUser(userData)
-    }
-
-    else{
-        const userData = {}
-        setUser(userData)
-       router.push("/authentication/login");
-    
-    }
-
-},[])
 
 
 
@@ -129,10 +112,10 @@ useEffect(()=>{
                 <h1 className="mb-[10px] font-bold">MONDAY</h1>
                 {
                     
-                    dummy.map((item)=>{
+                    dummy.map((item,index)=>{
                        if(item.day == "Monday"){
                         return(
-                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
@@ -146,10 +129,10 @@ useEffect(()=>{
                 <h1 className="mb-[10px] font-bold">TUESDAY</h1>
                 {
                     
-                    dummy.map((item)=>{
+                    dummy.map((item,index)=>{
                        if(item.day == "Tuesday"){
                         return(
-                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
@@ -162,10 +145,10 @@ useEffect(()=>{
                 <h1 className="mb-[10px] font-bold">WEDNESDAY</h1>
                 {
                     
-                    dummy.map((item)=>{
+                    dummy.map((item,index)=>{
                        if(item.day == "Wednesday"){
                         return(
-                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
@@ -180,10 +163,10 @@ useEffect(()=>{
                 <h1 className="mb-[10px] font-bold">THURSDAY</h1>
                 {
                     
-                    dummy.map((item)=>{
+                    dummy.map((item,index)=>{
                        if(item.day == "Thursday"){
                         return(
-                            <div className="mb-[10px] gap-3 flex">{item.course} &nbsp;<span className="text-red-600 font-bold">||</span>   {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] gap-3 flex">{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>   {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
                         )
                        }
                     })
