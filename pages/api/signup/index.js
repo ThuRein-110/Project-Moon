@@ -1,17 +1,17 @@
 import {connect} from "../../../database/dbConfig"
 import User from "../../../database/models"
-import { NextRequest, NextResponse } from "next/server"
+import { NextApiRequest,NextApiResponse } from "next"
 import bcryptjs from "bcryptjs"
 
-export async function POST(NextRequest,NextResponse){
-    connect()
+export default async function signup(NextApiRequest,NextApiResponse){
+    await connect()
     try{
-            const reqBody = await NextRequest.json();
+            const reqBody = NextApiRequest.body;
             const{username,email,password,dept,level,semester,matno,phone} = reqBody
-           const user = await User.findOne({email:email});
+           const user = User.findOne({email:email});
 // check if user email exists
-            if(user){
-                return NextResponse.json({message:"User Email already exists"}, {status:400})
+            if(user == true){
+                return NextApiResponse.json({message:"User Email already exists"}, {status:400})
             }
 
             // hash password
@@ -32,11 +32,11 @@ export async function POST(NextRequest,NextResponse){
              })
             await newUser.save();
 
-            return NextResponse.json({message:"User created", userData:newUser}, {status:200})
+            return NextApiResponse.json({message:"User created", userData:newUser}, {status:200})
 
              
     }
     catch(error){
-            return NextResponse.json({error:error.message}, {status:500})
+            return NextApiResponse.json({error:error.message}, {status:500})
     }
 }

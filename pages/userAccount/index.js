@@ -82,11 +82,11 @@ const logout = ()=>{
     router.push("/authentication/login")
 }
 useEffect(()=>{
-    
+    alert("Course: CSC 514 || Time: 4:00pm - 6:00pm || CSC lab || Venue:Thursday")
 
     if(localStorage.getItem("userData") !== undefined  || localStorage.getItem("token") !== undefined){
-        const userData = JSON.parse(localStorage.getItem("userData"))
-        const token = JSON.parse(localStorage.getItem("token"))
+        const userData = JSON.stringify(localStorage.getItem("userData")) 
+        const token = JSON.stringify(localStorage.getItem("token"))
         setToken(token)
         setUser(userData)
     }

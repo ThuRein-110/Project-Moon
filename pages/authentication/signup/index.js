@@ -12,10 +12,16 @@ import {
 
   import { Button, ButtonGroup } from '@chakra-ui/react'
   import {useRouter} from "next/navigation"
-  import 'react-toastify/dist/ReactToastify.css';
-  import { ToastContainer, toast } from 'react-toastify'
-  import axios from 'axios'
-  import {ImSpinner8} from 'react-icons/im'
+  import {toast} from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
+import axios from 'axios'
+import {ImSpinner8} from 'react-icons/im'
+import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+import {firebaseapp} from "../../Firebase"
+import {getFirestore} from "firebase/firestore"
+import {getAuth} from  "firebase/auth";
+import {setDoc,doc} from "firebase/firestore"
 
 function Signup() {
 
@@ -31,6 +37,8 @@ function Signup() {
     const[loading,setLoading] = useState(false)
     const [errMessage, setErrorMessage] = useState('')
     const [success,setSuccess] = useState(false)
+    const projectfirestore = getFirestore(firebaseapp)
+    const auth = getAuth(firebaseapp)
 
      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
    
@@ -65,29 +73,34 @@ function Signup() {
         return;
     }
 
-    axios.post("/api/signup",{
-      username:name,
-      email:email,
-      password:password,
-      dept:dept,
-      level:level,
-      semester:semester,
-      matno:matno,
-      phone: phone
-    },
-   ).then((response)=>{
-        setSuccess(false)
-     
-        setEmail('')
-        setName('')
-        setPhone('')
-        setMat('')
-        setPassword('')
-        setLevel('')
-        setDept('')
-        setSemester('')
-        toast(response.data.message, {autoClose:1000, type:'success', position:'top-right'})
-        localStorage.setItem('userData', response.data.userData)
+    await createUserWithEmailAndPassword(auth,email,password).then((response)=>{
+      console.log(response)
+      //localStorage.setItem('token', JSON.stringify(response.user.refreshToken))
+      setSuccess(false)
+      alert("Done")
+         setEmail('')
+         setName('')
+         setPhone('')
+         setMat('')
+         setPassword('')
+         setLevel('')
+         setDept('')
+         setSemester('')
+         toast("Sign Up Successfully", {autoClose:1000, type:'success', position:'top-right'})
+         setTimeout(()=>{
+          router.push("/authentication/login")
+         }, 3000)
+    //console.log(response)
+ setDoc(
+      doc(projectfirestore, "users",response.user.uid),{
+        Name:name,
+        Email:email,
+        id:response.user.uid,
+      
+      });
+      setDoc(doc(projectfirestore,'singleUserCourses', `${email}`),{
+        saveCourses:[]
+       })
     }).catch((err)=>{
         if(err){
             toast(err.message,{autoClose:1000,type:'error',position:'top-right'})
@@ -149,6 +162,12 @@ function Signup() {
      <FormControl>
       <FormLabel>Email</FormLabel>
       <Input type='email' value={email} onChange={(e)=>setEmail(e.target.value)}  placeholder="Email"/>
+     
+    </FormControl>
+
+    <FormControl>
+      <FormLabel>Password</FormLabel>
+      <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}  placeholder="Email"/>
      
     </FormControl>
     <FormControl>

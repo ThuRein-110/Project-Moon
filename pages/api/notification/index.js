@@ -2,10 +2,10 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import twilio from 'twilio';
 
 export default function sendMessage( NextApiRequest NextApiResponse) {
-  const accountSid = <string>process.env.ACCOUNT_SID;
-  const token = <string>process.env.AUTH_TOKEN;
+  const accountSid = process.env.ACCOUNT_SID;
+  const token = process.env.AUTH_TOKEN;
   const client = twilio(accountSid, token);
-  const { phone, message } = req.body;
+  const { phone, message } = NextResponse.body;
   // console.log(phone, message);
   client.messages
     .create({

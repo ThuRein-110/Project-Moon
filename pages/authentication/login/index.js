@@ -18,8 +18,14 @@ import {ImSpinner8} from 'react-icons/im'
         Input
       } from '@chakra-ui/react'
     
-      import { Button, ButtonGroup } from '@chakra-ui/react'
-      import {useRouter} from "next/navigation"
+ import { Button, ButtonGroup } from '@chakra-ui/react'
+ import {useRouter} from "next/navigation"
+ import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+import {firebaseapp} from "../../Firebase"
+import {getFirestore} from "firebase/firestore"
+import {getAuth} from  "firebase/auth";
+import {setDoc,doc} from "firebase/firestore"
+import {signInWithEmailAndPassword} from 'firebase/auth';
 
 function Login() {
 const [email,setEmail] = useState("")
@@ -30,6 +36,8 @@ const [errMessage, setErrorMessage] = useState('')
 const [success,setSuccess] = useState(false)
 const router = useRouter()
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const projectfirestore = getFirestore(firebaseapp)
+const auth = getAuth(firebaseapp)
 
   const loginInUser = async(e)=>{
 
@@ -46,39 +54,21 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     }
 
 
-    try{
-      await axios.post("/api/login",{
-        
-         email:email,
-         password:password,
-       }).then((response)=>{
-         console.log(response)
-        const userToken = localStorage.getItem("token")
-        if(userToken !== undefined){
-          localStorage.setItem("token", response.data.token)
-          setTimeout(()=>{
-            router.push("/userAccount")
-          }, 5000)
-         
-        }
-        else{
-          return
-        }
-
-
-       }).catch((err)=>{
-           console.log(err.message)
-       })
+   try{
+    await signInWithEmailAndPassword(auth,email,password).then((response)=>{
+      setTimeout(()=>{
+        router.push("/createTimeTable")
+      }, 3000)
+    })
+   }
+   catch(err){
+    console.log("ERROR")
+   }
    }
 
-   catch(error){
-       console.log(error.message)
-   } 
-   finally{
-     setLoading(false)
-   }
+   
 
-    }
+  
 
 
     else{

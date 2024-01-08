@@ -3,7 +3,7 @@ import User from "../../../database/models"
 import { NextRequest, NextResponse } from "next/server"
 import bcryptjs from "bcryptjs"
 
-export async function POST(NextRequest,NextResponse){
+export async function signup(NextRequest,NextResponse){
     connect()
     try{
             const reqBody = await NextRequest.json();

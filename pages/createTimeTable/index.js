@@ -1,9 +1,16 @@
 "use client"
 
 import {useRouter} from "next/navigation"
-import React, {useEffect,useState} from "react"
+import React, {useEffect,useState,useContext} from "react"
 import axios from "axios"
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import {firebaseapp} from "../Firebase"
+import {getFirestore} from "firebase/firestore"
+import {getAuth} from  "firebase/auth";
+import {setDoc,doc} from "firebase/firestore"
+import { updateDoc,arrayUnion, onSnapshot } from "firebase/firestore"; 
+import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "firebase/storage";
+import { Auth } from '../Firebase/context';
 
 function UserAccount(){
     
@@ -11,32 +18,36 @@ function UserAccount(){
     const [time,setTime] = useState('')
     const [userToken, setToken] = useState('')
     const[venue,setVenue] = useState('')
+    const[courseDate, setcourseDate] = useState('')
     const router = useRouter();
+    const[loading,setLoading] = useState(false)
+    const projectfirestore = getFirestore(firebaseapp)
+const auth = getAuth(firebaseapp)
 
 
-
-const createTimer = async()=>{
-    await axios.post("api/scheduler",{
-        email:user?.email,
-        course:course,
-        time:time,
-        venue:venue
-    }).then((response)=>{
-        console.log("time")
+const {user} = useContext(Auth)
+const createTimer = async(e)=>{
+   e.preventDefault();
+   setLoading(true)
+    updateDoc(doc(projectfirestore,"singleUserCourses",`${user?.email}`),{
+      saveCourses:arrayUnion({
+          courseName:course,
+          courseTime:time,
+          courseVenue:venue,
+          courseDate:courseDate,
+          //userId:user.id
+      })
     })
+  
+      setcourse('')
+      setTime('')
+      setVenue('')
+      setcourseDate('')
+      setLoading(false)
+    
 }
    
 useEffect(()=>{
-    
-    if(localStorage.getItem("userData") !== undefined  || localStorage.getItem("token") !== undefined){
-       return;
-    }
-
-    else{
-        
-       router.push("/authentication/login");
-
-    }
 
 },[])
 
@@ -70,7 +81,7 @@ useEffect(()=>{
 
           <div>
           <label for="appt" className="font-bold text-red-600 mb-[10px]">Date</label><br/>
-          <input type="date" id="appt" name="appt"  required value={time} onChange={(e)=>setTime(e.target.value)} className="w-[200px] mt-2" />
+          <input type="date" id="appt" name="appt"  required value={courseDate} onChange={(e)=>setcourseDate(e.target.value)} className="w-[200px] mt-2" />
           </div>
 <br/>
           <Button colorScheme='red' onClick={createTimer}>Save</Button>

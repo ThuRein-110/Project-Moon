@@ -4,7 +4,7 @@ import Navbar from '@/components/navbar'
 import {useRouter} from "next/navigation"
 import Link from "next/link"
 
-const inter = Poppins({ subsets: ['poppins'] })
+//const inter = Poppins({ subsets: ['poppins'] })
 
 export default function Home() {
 
