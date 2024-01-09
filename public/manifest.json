@@ -2,31 +2,28 @@
     "name": "RemindMe",
     "short_name": "RemindMe",
     "start_url" :"/",
+    "AppId":"/",
+    "Description":"A Timetable reminder System",
     "display":"standalone",
     "scope":"/",
     "theme_color":"#35155D",
-    "background_color":"#fffff",
+    "background_color":"white",
     "icons": [
       {
-        "src": "/icons/android-chrome-192x192.png",
+        "src": "/favicon.ico",
         "sizes": "192x192",
         "type": "image/png",
         "purpose": "any maskable"
       },
       {
-        "src": "/icons/android-chrome-384x384.png",
+        "src": "/favicon.ico",
         "sizes": "384x384",
         "type": "image/png"
       },
       {
-        "src": "/icons/icon-512x512.png",
+        "src": "/favicon.ico",
         "sizes": "512x512",
         "type": "image/png"
       }
-    ],
-    "theme_color": "#FFFFFF",
-  "background_color": "#FFFFFF",
-  "start_url": "/",
-  "display": "standalone",
-  "orientation": "portrait"
+    ]
 }
