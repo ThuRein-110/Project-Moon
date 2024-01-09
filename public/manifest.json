@@ -7,8 +7,8 @@
     "display":"standalone",
     "scope":"/",
     "theme_color":"#35155D",
-    "background_color":"white",
-    "icons": [
+    "background_color":"white"
+   /* "icons": [
       {
         "src": "/favicon.ico",
         "sizes": "192x192",
@@ -25,5 +25,5 @@
         "sizes": "512x512",
         "type": "image/png"
       }
-    ]
+    ]*/
 }
