@@ -56,8 +56,9 @@ const auth = getAuth(firebaseapp)
 
    try{
     await signInWithEmailAndPassword(auth,email,password).then((response)=>{
-      setTimeout(()=>{
-        router.push("/createTimeTable")
+      console.log(response)
+   setTimeout(()=>{
+       router.push("/createTimeTable")
       }, 3000)
     })
    }
@@ -105,7 +106,7 @@ const auth = getAuth(firebaseapp)
 
         <div className="flex justify-between mt-3 text-sm">
               <p>Do not have an account? <span className="text-red-600 cursor-pointer font-bold" onClick={()=> router.push("/authentication/signup")}>SIGN UP</span></p>
-              <p className="text-red-600 cursor-pointer font-bold" onClick={()=>router.push("/forgotpwd")}>Forgot password?</p>
+              <p className="text-red-600 cursor-pointer font-bold text-sm" onClick={()=>router.push("/forgotpwd")}>Forgot password?</p>
         </div>
        
         </div>

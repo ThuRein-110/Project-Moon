@@ -87,9 +87,9 @@ function Signup() {
          setDept('')
          setSemester('')
          toast("Sign Up Successfully", {autoClose:1000, type:'success', position:'top-right'})
-         setTimeout(()=>{
+      setTimeout(()=>{
           router.push("/authentication/login")
-         }, 3000)
+        }, 3000)
     //console.log(response)
  setDoc(
       doc(projectfirestore, "users",response.user.uid),{
@@ -121,7 +121,7 @@ function Signup() {
     }
   return (
     <>
- <div className="w-[50%] m-auto mt-[50px]">
+ <div className="w-[50%] m-auto md:mt-[50px] flex flex-col items-center align-center mt-[60px]">
  <div>
             <h2 className="text-center text-2xl font-bold">Sign Up</h2>
           </div>
@@ -187,7 +187,7 @@ function Signup() {
     </FormControl>
 </div>
 <br/>
-    <Button colorScheme='red' onClick={submit} className="w-[350px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Register</p>}</Button>
+    <Button colorScheme='red' onClick={submit} className="md:w-[350px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Register</p>}</Button>
     <div className="flex justify-center items-center mt-3">
               <p>Already have an account? <span className="text-red-600 cursor-pointer font-bold" onClick={()=> router.push("/authentication/login")}>LOGIN</span></p>
              
