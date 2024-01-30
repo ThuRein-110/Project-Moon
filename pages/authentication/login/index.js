@@ -57,9 +57,9 @@ const auth = getAuth(firebaseapp)
    try{
     await signInWithEmailAndPassword(auth,email,password).then((response)=>{
       console.log(response)
-   setTimeout(()=>{
-       router.push("/createTimeTable")
-      }, 3000)
+   //setTimeout(()=>{
+     //  router.push("/createTimeTable")
+     // }, 3000)
     })
    }
    catch(err){

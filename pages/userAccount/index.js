@@ -1,17 +1,26 @@
 "use client"
 
 import {useRouter} from "next/navigation"
-import React, {useEffect,useState} from "react"
+import React, {useEffect,useState,useContext} from "react"
 import axios from "axios"
 import { Button, ButtonGroup } from '@chakra-ui/react'
 import { MdEdit } from "react-icons/md";
+import { collection,   onSnapshot,query } from "firebase/firestore";
+import {firebaseapp} from "../../Firebase"
+import {getFirestore} from "firebase/firestore"
+import { Auth } from '../../Firebase/context';
+import {ImSpinner8} from 'react-icons/im'
 
 function UserAccount(){
-    const[user, setUser] = useState({})
+    const[userDetails, setUserDetails] = useState({})
     const [course,setCourse] = useState('');
     const [time,setTime] = useState('')
     const [userToken, setToken] = useState('')
     const router = useRouter();
+    const [courses,setCourses] = useState([]);
+    const [loading, setLoading] = useState(true)
+    
+const {user} = useContext(Auth)
     const[dummy, setDummy] = useState([
         {
         course:"IFT 506",
@@ -84,8 +93,50 @@ const logout = ()=>{
 
 
 
+const getUserTimeTable = async ()=>{
+    setLoading(true)
+    try{
+      await onSnapshot(doc(projectfirestore, "singleUserCourses", `${user?.email}`), (doc) => {
+          
+           setLoading(false)
+            setCourses(doc.data()?.saveCourses)
+          
+        });
+          } 
+         catch(err){
+          console.log(err.message)
+        }
 
+        console.log(courses)
+  }
 
+  const getUserDetails = async()=>{
+    try{
+        await onSnapshot(doc(projectfirestore, "users", `${user?.email}`), (doc) => {
+            
+             setLoading(false)
+              setUserDetails(doc.data())
+            
+          });
+            } 
+           catch(err){
+            console.log(err.message)
+          }
+  
+          console.log(user)
+  }
+
+  useEffect(()=>{
+    getUserDetails();
+    getUserTimeTable();
+  })
+
+  if(loading){
+    return(
+<div className="flex items-center justify-center mt-[350px]"><ImSpinner8 className="text-red-700 animate-spin w-[300px] text-[60px] "/></div>
+    )
+  }
+  else{
  return(
 
         <>
@@ -94,9 +145,9 @@ const logout = ()=>{
         <div className="h-[50px] flex flex-col ">
         
             <div className="bg-red-600 text-white w-[500px] pl-[10px] pt-[10px] pr-[10px] pb-[10px] text-sm text-bold flex justify-between align-center">
-                <div><h1 className="font-bold">{user?.name} EKWEAGA CHARLES - 500lvl <span>{user?.matno} </span></h1>
+                <div><h1 className="font-bold">{userDetails?.name} EKWEAGA CHARLES - 500lvl <span>{userDetails?.matno} </span></h1>
                 <div>
-                <span>{user?.dept} Information Technology</span>
+                <span>{userDetails?.dept} Information Technology</span>
                 </div>
                 
                  </div>
@@ -198,7 +249,7 @@ const logout = ()=>{
         
     )
 
-
+            }
    
 }
 

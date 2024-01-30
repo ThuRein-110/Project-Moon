@@ -11,14 +11,18 @@ import {setDoc,doc} from "firebase/firestore"
 import { updateDoc,arrayUnion, onSnapshot } from "firebase/firestore"; 
 import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "firebase/storage";
 import { Auth } from '../../Firebase/context';
+import {ImSpinner8} from 'react-icons/im'
 
 function UserAccount(){
     
     const [course,setCourse] = useState('');
-    const [time,setTime] = useState('')
+    const [startTime,setStartTime] = useState('')
+    const [endTime,setEndTime] = useState('')
     const [userToken, setToken] = useState('')
     const[venue,setVenue] = useState('')
     const[courseDate, setcourseDate] = useState('')
+    const [courseday,setDay] = useState('')
+    const [success,setSuccess] = useState(false)
     const router = useRouter();
     const[loading,setLoading] = useState(false)
     const projectfirestore = getFirestore(firebaseapp)
@@ -28,22 +32,27 @@ const auth = getAuth(firebaseapp)
 const {user} = useContext(Auth)
 const createTimer = async(e)=>{
    e.preventDefault();
-   setLoading(true)
-    updateDoc(doc(projectfirestore,"singleUserCourses",`${user?.email}`),{
+   setSuccess(true)
+
+   await updateDoc(doc(projectfirestore,"singleUserCourses",`${user?.email}`),{
       saveCourses:arrayUnion({
           courseName:course,
-          courseTime:time,
+          startTime:startTime,
+          endTime:endTime,
           courseVenue:venue,
           courseDate:courseDate,
+          courseDay: courseday
           //userId:user.id
       })
     })
   
       setcourse('')
-      setTime('')
+      setStartTime('')
+      setEndTime('')
       setVenue('')
+      setDay('')
       setcourseDate('')
-      setLoading(false)
+      setSuccess(false)
     
 }
    
@@ -57,7 +66,7 @@ useEffect(()=>{
  return(
 
         <>
-       <div className="md:mt-[140px] w-[50%] m-auto flex justify-center align-center text-sm mt-[200px] ">
+       <div className="md:mt-[140px] w-[50%] m-auto flex justify-center align-center text-sm mt-[100px] ">
 
         
             
@@ -65,26 +74,37 @@ useEffect(()=>{
 
         <div>
 
-            <h1 className="font-bold text-3xl mb-[25px]">Enter Your Lectures Details</h1>
+            <h1 className="font-bold text-3xl mb-[25px] text-center">Enter Your Lectures Details</h1>
 
-        <div><label className="font-bold text-red-600 mb-[10px] text-[20px]">Course title</label><br/>
+        <div><label className="font-bold text-red-600 mb-[10px] text-[15px]">Course title</label><br/>
         <input type="text" value={course} onChange={(e)=>setCourse(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
 
-        <div><label className="font-bold text-red-600 mb-[10px] text-[20px]" >Venue</label><br/>
+        <div><label className="font-bold text-red-600 mb-[10px] text-[15px]" >Venue</label><br/>
         <input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
+  <div>
+    <h1 className="text-center text-[15px] font-bold mt-[20px] mb-[20px]">Course Duration</h1>
+            <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]"> Start Time</label><br/>
 
-            <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[20px]">Time</label><br/>
-
-          <input type="time" id="appt" name="appt" className="w-[250px]" required value={time} onChange={(e)=>setTime(e.target.value)} />
+          <input type="time" id="appt" name="appt" className="w-[250px]" required value={startTime} onChange={(e)=>setStartTime(e.target.value)} />
           
           </div><br/>
 
+          <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]"> End Time</label><br/>
+
+<input type="time" id="appt" name="appt" className="w-[250px]" required value={endTime} onChange={(e)=>setEndTime(e.target.value)} />
+
+</div></div><br/>
+
           <div>
-          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[20px]">Date</label><br/>
+          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]">Date</label><br/>
           <input type="date" id="appt" name="appt"  required value={courseDate} onChange={(e)=>setcourseDate(e.target.value)} className="w-[200px] mt-2" />
+          </div> <br/>
+          <div>
+          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]">Day</label><br/>
+          <input type="text" id="appt" name="appt"  required value={courseday} onChange={(e)=>setDay(e.target.value)} className="w-[200px] mt-2" placeholder="Monday"/>
           </div>
 <br/>
-          <Button colorScheme='red' onClick={createTimer} className="w-[300px] mt-3">Save</Button>
+          <Button colorScheme='red' onClick={createTimer} className="w-[300px] mt-3">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Save</p>}</Button>
 
 
         </div>
