@@ -10,6 +10,7 @@ import {firebaseapp} from "../../Firebase"
 import {getFirestore} from "firebase/firestore"
 import { Auth } from '../../Firebase/context';
 import {ImSpinner8} from 'react-icons/im'
+import {setDoc,doc,updateDoc} from "firebase/firestore"
 
 function UserAccount(){
     const[userDetails, setUserDetails] = useState({})
@@ -19,7 +20,7 @@ function UserAccount(){
     const router = useRouter();
     const [courses,setCourses] = useState([]);
     const [loading, setLoading] = useState(true)
-    
+    const projectfirestore = getFirestore(firebaseapp)
 const {user} = useContext(Auth)
     const[dummy, setDummy] = useState([
         {
@@ -84,7 +85,10 @@ const {user} = useContext(Auth)
 ])
 
 
-
+const goNav = ()=>{
+    router.push("/createTimeTable");
+    return;
+  }
 
 const logout = ()=>{
     localStorage.removeItem("token")
@@ -96,7 +100,7 @@ const logout = ()=>{
 const getUserTimeTable = async ()=>{
     setLoading(true)
     try{
-      await onSnapshot(doc(projectfirestore, "singleUserCourses", `${user?.email}`), (doc) => {
+     onSnapshot(doc(projectfirestore, "singleUserCourses", `${user?.email}`), (doc) => {
           
            setLoading(false)
             setCourses(doc.data()?.saveCourses)
@@ -111,8 +115,9 @@ const getUserTimeTable = async ()=>{
   }
 
   const getUserDetails = async()=>{
+     setLoading(true)
     try{
-        await onSnapshot(doc(projectfirestore, "users", `${user?.email}`), (doc) => {
+ onSnapshot(doc(projectfirestore, "users", `${user?.email}`), (doc) => {
             
              setLoading(false)
               setUserDetails(doc.data())
@@ -123,13 +128,13 @@ const getUserTimeTable = async ()=>{
             console.log(err.message)
           }
   
-          console.log(user)
+          console.log(userDetails)
   }
 
   useEffect(()=>{
     getUserDetails();
     getUserTimeTable();
-  })
+  },[user])
 
   if(loading){
     return(
@@ -137,6 +142,16 @@ const getUserTimeTable = async ()=>{
     )
   }
   else{
+    if(courses.length == 0){
+        return (
+            <div className="flex flex-col gap-3 items-center justify-center mt-[250px]"><p>No course details available</p>
+            <button colorScheme='white' onClick={goNav}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[200px] font-bold text-2xl">Enter Course Details</p></button>
+            </div>
+        )
+    }
+    else{
+
+    
  return(
 
         <>
@@ -145,15 +160,15 @@ const getUserTimeTable = async ()=>{
         <div className="h-[50px] flex flex-col ">
         
             <div className="bg-red-600 text-white w-[500px] pl-[10px] pt-[10px] pr-[10px] pb-[10px] text-sm text-bold flex justify-between align-center">
-                <div><h1 className="font-bold">{userDetails?.name} EKWEAGA CHARLES - 500lvl <span>{userDetails?.matno} </span></h1>
+                <div><h1 className="font-bold">{userDetails?.Name}  <span>{userDetails?.Matno} </span></h1>
                 <div>
-                <span>{userDetails?.dept} Information Technology</span>
+                <span>{userDetails?.dept}</span>
                 </div>
                 
                  </div>
 
                  <div>
-                <span>{user?.dept} IFT/17/2433</span><br/>
+                <span>{userDetails?.semester} semester</span><br/><span> {userDetails?.level}  </span>
               
                 </div>
                 
@@ -163,10 +178,10 @@ const getUserTimeTable = async ()=>{
                 <h1 className="mb-[10px] font-bold">MONDAY</h1>
                 {
                     
-                    dummy.map((item,index)=>{
-                       if(item.day == "Monday"){
+                    courses?.map((item,index)=>{
+                       if(item.courseDay == "Monday"){
                         return(
-                            <div className="mb-[10px] flex gap-3" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
                         )
                        }
                     })
@@ -180,10 +195,10 @@ const getUserTimeTable = async ()=>{
                 <h1 className="mb-[10px] font-bold">TUESDAY</h1>
                 {
                     
-                    dummy.map((item,index)=>{
-                       if(item.day == "Tuesday"){
+                    courses?.map((item,index)=>{
+                       if(item.courseDay == "Tuesday"){
                         return(
-                            <div className="mb-[10px] flex gap-3" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item?.startTime} - {item?.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
                         )
                        }
                     })
@@ -196,10 +211,11 @@ const getUserTimeTable = async ()=>{
                 <h1 className="mb-[10px] font-bold">WEDNESDAY</h1>
                 {
                     
-                    dummy.map((item,index)=>{
-                       if(item.day == "Wednesday"){
+                courses?.map((item,index)=>{
+                       if(item.courseDay == "Wednesday"){
                         return(
-                            <div className="mb-[10px] flex gap-3" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>  {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            
                         )
                        }
                     })
@@ -214,19 +230,36 @@ const getUserTimeTable = async ()=>{
                 <h1 className="mb-[10px] font-bold">THURSDAY</h1>
                 {
                     
-                    dummy.map((item,index)=>{
-                       if(item.day == "Thursday"){
+                    courses?.map((item,index)=>{
+                       if(item.courseDay == "Thursday"){
                         return(
-                            <div className="mb-[10px] gap-3 flex" key={index}>{item.course} &nbsp;<span className="text-red-600 font-bold" key={index}>||</span>   {item.time} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.venue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                        
                         )
                        }
                     })
                 }
             </div>
 <br/>
-            <div className="flex ">
 
-<button colorScheme='white' onClick={logout}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[500px] font-bold text-2xl">LOGOUT</p></button></div>
+<div className=" md:p-0 p-3">
+                <h1 className="mb-[10px] font-bold">FRIDAY</h1>
+                {
+                    
+                    courses?.map((item,index)=>{
+                       if(item.courseDay == "Friday"){
+                        return(
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                        
+                        )
+                       }
+                    })
+                }
+            </div>
+<br/>
+            <div className="flex items-center justify-center ">
+
+<button colorScheme='white' onClick={logout}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[200px] font-bold text-2xl">LOGOUT</p></button></div>
 
         </div>
       
@@ -248,6 +281,7 @@ const getUserTimeTable = async ()=>{
         
         
     )
+            }
 
             }
    

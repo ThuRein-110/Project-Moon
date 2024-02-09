@@ -87,15 +87,17 @@ function Signup() {
          setDept('')
          setSemester('')
          toast("Sign Up Successfully", {autoClose:1000, type:'success', position:'top-right'})
-      setTimeout(()=>{
-          router.push("/authentication/login")
-        }, 3000)
+     
     //console.log(response)
  setDoc(
-      doc(projectfirestore, "users",response.user.uid),{
+      doc(projectfirestore, "users",response.user.email),{
         Name:name,
         Email:email,
+        Matno : matno,
+        semester:semester,
+        dept:dept,
         id:response.user.uid,
+        level:level
       
       });
       setDoc(doc(projectfirestore,'singleUserCourses', `${email}`),{
@@ -108,7 +110,9 @@ function Signup() {
         setSuccess(false)
         
     })
-
+ setTimeout(()=>{
+          router.push("/authentication/login")
+        }, 3000)
 }
 
      else{

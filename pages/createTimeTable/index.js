@@ -30,6 +30,11 @@ const auth = getAuth(firebaseapp)
 
 
 const {user} = useContext(Auth)
+
+const goNav = ()=>{
+  router.push("/userAccount");
+  return;
+}
 const createTimer = async(e)=>{
    e.preventDefault();
    setSuccess(true)
@@ -46,7 +51,7 @@ const createTimer = async(e)=>{
       })
     })
   
-      setcourse('')
+      setCourse('')
       setStartTime('')
       setEndTime('')
       setVenue('')
@@ -105,7 +110,10 @@ useEffect(()=>{
           </div>
 <br/>
           <Button colorScheme='red' onClick={createTimer} className="w-[300px] mt-3">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Save</p>}</Button>
-
+          <br/><br/>
+          <p className="items-center justify-center flex">OR</p><br/>
+          
+          <Button colorScheme='red' onClick={goNav} className="w-[300px] mt-3"><p className="text-[17px]">Load Time-Table</p></Button>
 
         </div>
 
