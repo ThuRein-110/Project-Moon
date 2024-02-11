@@ -22,68 +22,6 @@ function UserAccount(){
     const [loading, setLoading] = useState(true)
     const projectfirestore = getFirestore(firebaseapp)
 const {user} = useContext(Auth)
-    const[dummy, setDummy] = useState([
-        {
-        course:"IFT 506",
-        time:"10:00am - 12pm",
-        venue:"CSC Lab",
-        day:"Monday",
-        id:1
-    },
-    {
-        course:"CSC 508",
-        time:"4:00pm - 6:00pm",
-        venue:"CSC Lab",
-        day:"Monday",
-        id:2
-    },
-
-    {
-        course:"IFT 504",
-        time:"2:00pm - 4:00pm",
-        venue:"IFT Lab",
-        day:"Tuesday",
-        id:3
-    },
-    {
-        course:"IFT 512",
-        time:"9:00am - 10:00am",
-        venue:"IFT LR2",
-        day:"Wednesday",
-        id:4
-    },
-    {
-        course:"IFT 502",
-        time:"2:00pm - 4:00pm",
-        venue:"CSC Lab",
-        day:"Wednesday",
-        id:5
-    },
-    {
-        course:"IFT 508",
-        time:"10:00am - 12:00pm",
-        venue:"IFT Lab",
-        day:"Thursday",
-        id:6
-    },
-    {
-        course:"IFT 510",
-        time:"2:00pm - 4:00pm",
-        venue:"EFT",
-        day:"Thursday",
-        id:7
-    },
-    {
-        course:"CSC 514",
-        time:"4:00pm - 6:00pm",
-        venue:"CSC Lab",
-        day:"Thursday",
-        id:8
-    }
-
-
-])
-
 
 const goNav = ()=>{
     router.push("/createTimeTable");
@@ -91,7 +29,7 @@ const goNav = ()=>{
   }
 
 const logout = ()=>{
-    localStorage.removeItem("token")
+    //localStorage.removeItem("token")
     router.push("/authentication/login")
 }
 
@@ -132,8 +70,12 @@ const getUserTimeTable = async ()=>{
   }
 
   useEffect(()=>{
-    getUserDetails();
+   
     getUserTimeTable();
+  },[user])
+
+  useEffect(()=>{
+     getUserDetails();
   },[user])
 
   if(loading){
@@ -142,14 +84,8 @@ const getUserTimeTable = async ()=>{
     )
   }
   else{
-    if(courses.length == 0){
-        return (
-            <div className="flex flex-col gap-3 items-center justify-center mt-[250px]"><p>No course details available</p>
-            <button colorScheme='white' onClick={goNav}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[200px] font-bold text-2xl">Enter Course Details</p></button>
-            </div>
-        )
-    }
-    else{
+   
+   
 
     
  return(
@@ -174,14 +110,20 @@ const getUserTimeTable = async ()=>{
                 
             </div>
 
-            <div className="mt-[20px] md:p-0 p-3">
-                <h1 className="mb-[10px] font-bold">MONDAY</h1>
+            
+            
+         {courses ? (<div>
+   <div className="mt-[20px] md:p-0 p-3">
+               
                 {
                     
                     courses?.map((item,index)=>{
                        if(item.courseDay == "Monday"){
                         return(
+                            <>
+                            <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
                             <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            </>
                         )
                        }
                     })
@@ -189,16 +131,17 @@ const getUserTimeTable = async ()=>{
             </div>
 <br/>
 
-
-
-            <div className=" md:p-0 p-3">
-                <h1 className="mb-[10px] font-bold">TUESDAY</h1>
+   <div className=" md:p-0 p-3">
+               
                 {
                     
                     courses?.map((item,index)=>{
                        if(item.courseDay == "Tuesday"){
                         return(
+                            <>
+                            <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
                             <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item?.startTime} - {item?.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            </>
                         )
                        }
                     })
@@ -207,15 +150,18 @@ const getUserTimeTable = async ()=>{
 
 <br/>
 
-            <div className=" md:p-0 p-3">
-                <h1 className="mb-[10px] font-bold">WEDNESDAY</h1>
+
+ <div className=" md:p-0 p-3">
+               
                 {
                     
                 courses?.map((item,index)=>{
                        if(item.courseDay == "Wednesday"){
                         return(
+                            <>
+                            <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
                             <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
-                            
+                            </>
                         )
                        }
                     })
@@ -226,15 +172,17 @@ const getUserTimeTable = async ()=>{
 
 <br/>
 
-            <div className=" md:p-0 p-3">
-                <h1 className="mb-[10px] font-bold">THURSDAY</h1>
+   <div className=" md:p-0 p-3">
+              
                 {
                     
                     courses?.map((item,index)=>{
                        if(item.courseDay == "Thursday"){
                         return(
+                            <>
+                            <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
                             <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
-                        
+                            </>
                         )
                        }
                     })
@@ -243,23 +191,54 @@ const getUserTimeTable = async ()=>{
 <br/>
 
 <div className=" md:p-0 p-3">
-                <h1 className="mb-[10px] font-bold">FRIDAY</h1>
+               
                 {
                     
                     courses?.map((item,index)=>{
                        if(item.courseDay == "Friday"){
                         return(
+                            <>
+                            <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
                             <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
-                        
+                            </>
                         )
                        }
                     })
                 }
             </div>
 <br/>
-            <div className="flex items-center justify-center ">
+
+
+ 
+         </div>): 
+         
+         ( <div className="flex flex-col gap-3 items-center justify-center mt-[250px]"><p>No course details available</p>
+            <button colorScheme='white' onClick={goNav}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[200px] font-bold text-2xl">Enter Course Details</p></button>
+            </div>)
+            
+            
+            }  
+            
+          
+
+
+
+         
+
+           
+<br/>
+         
+
+<div className="flex items-center justify-center ">
 
 <button colorScheme='white' onClick={logout}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[200px] font-bold text-2xl">LOGOUT</p></button></div>
+           
+
+
+
+
+
+
 
         </div>
       
@@ -281,7 +260,7 @@ const getUserTimeTable = async ()=>{
         
         
     )
-            }
+          
 
             }
    
