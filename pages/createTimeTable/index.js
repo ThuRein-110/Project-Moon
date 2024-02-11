@@ -79,41 +79,40 @@ useEffect(()=>{
 
         <div>
 
-            <h1 className="font-bold text-3xl mb-[25px] text-center">Enter Your Lectures Details</h1>
+            <h1 className="font-bold text-[20px] mb-[25px] text-center">Enter Your Lectures Details</h1>
 
-        <div><label className="font-bold text-red-600 mb-[10px] text-[15px]">Course title</label><br/>
+        <div><label className="font-bold text-red-600 mb-[10px] text-[13px]">Course title</label><br/>
         <input type="text" value={course} onChange={(e)=>setCourse(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
 
-        <div><label className="font-bold text-red-600 mb-[10px] text-[15px]" >Venue</label><br/>
+        <div><label className="font-bold text-red-600 mb-[10px] text-[13px]" >Venue</label><br/>
         <input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
   <div>
     <h1 className="text-center text-[15px] font-bold mt-[20px] mb-[20px]">Course Duration</h1>
-            <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]"> Start Time</label><br/>
+            <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> Start Time</label><br/>
 
           <input type="time" id="appt" name="appt" className="w-[250px]" required value={startTime} onChange={(e)=>setStartTime(e.target.value)} />
           
           </div><br/>
 
-          <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]"> End Time</label><br/>
+          <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> End Time</label><br/>
 
 <input type="time" id="appt" name="appt" className="w-[250px]" required value={endTime} onChange={(e)=>setEndTime(e.target.value)} />
 
 </div></div><br/>
 
           <div>
-          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]">Date</label><br/>
+          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]">Date</label><br/>
           <input type="date" id="appt" name="appt"  required value={courseDate} onChange={(e)=>setcourseDate(e.target.value)} className="w-[200px] mt-2" />
           </div> <br/>
           <div>
-          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[15px]">Day</label><br/>
+          <label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]">Day of the week</label><br/>
           <input type="text" id="appt" name="appt"  required value={courseday} onChange={(e)=>setDay(e.target.value)} className="w-[200px] mt-2" placeholder="Monday"/>
           </div>
 <br/>
-          <Button colorScheme='red' onClick={createTimer} className="w-[300px] mt-3">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Save</p>}</Button>
-          <br/><br/>
-          <p className="items-center justify-center flex">OR</p><br/>
+          <Button colorScheme='red' onClick={createTimer} className="w-[250px] mt-3">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Save</p>}</Button>
           
-          <Button colorScheme='red' onClick={goNav} className="w-[300px] mt-3"><p className="text-[17px]">Load Time-Table</p></Button>
+          
+          <Button colorScheme='red' onClick={goNav} className="w-[250px] mt-3"><p className="text-[17px]">Load Time-Table</p></Button>
 
         </div>
 
