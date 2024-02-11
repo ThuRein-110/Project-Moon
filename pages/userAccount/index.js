@@ -212,8 +212,8 @@ const getUserTimeTable = async ()=>{
  
          </div>): 
          
-         ( <div className="flex flex-col gap-3 items-center justify-center mt-[250px]"><p>No course details available</p>
-            <button colorScheme='white' onClick={goNav}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[200px] font-bold text-2xl">Enter Course Details</p></button>
+         ( <div className="flex flex-col gap-3 items-center justify-center mt-[150px]"><p>No course details available</p>
+            <button colorScheme='white' onClick={goNav}><p className="text-[13px] border-[1px] border-red-700 p-[2px] w-[160px] font-bold text-2xl">Enter Course Details</p></button>
             </div>)
             
             
@@ -229,9 +229,9 @@ const getUserTimeTable = async ()=>{
 <br/>
          
 
-<div className="flex items-center justify-center ">
+<div className="flex items-center justify-center mt-3 ">
 
-<button colorScheme='white' onClick={logout}><p className="text-[13px] bg-red-700 text-white p-[10px] w-[200px] font-bold text-2xl">LOGOUT</p></button></div>
+<button colorScheme='white' onClick={logout}><p className="text-[13px] p-[2px] border-red-700 rounded-2xl font-bold text-2xl border-[1px] w-[100px]">Logout</p></button></div>
            
 
 
