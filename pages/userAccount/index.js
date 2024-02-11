@@ -91,6 +91,8 @@ const getUserTimeTable = async ()=>{
  return(
 
         <>
+      
+        
        <div className="md:mt-[40px] md:w-[50%] m-auto flex justify-center align-center text-sm flex-col mt-[0px]">
 
         <div className="h-[50px] flex flex-col ">
@@ -109,10 +111,10 @@ const getUserTimeTable = async ()=>{
                 </div>
                 
             </div>
-
+            <h1 className="text-center font-bold text-[20px] mt-[30px]">Courses Schedules</h1>
             
             
-         {courses ? (<div>
+         {courses ? (<div className="flex flex-col items-center justify-center">
    <div className="mt-[20px] md:p-0 p-3">
                
                 {

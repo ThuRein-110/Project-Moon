@@ -13,7 +13,7 @@ import {
   import { Button, ButtonGroup } from '@chakra-ui/react'
   import {useRouter} from "next/navigation"
   import {toast} from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css'
+  import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify'
 import axios from 'axios'
 import {ImSpinner8} from 'react-icons/im'
@@ -54,8 +54,9 @@ function Signup() {
         if(isNaN(phone) == false){
                     if(phone.length < 11){
                       
-                         toast('Phone digits must have at least 11 characters',{autoClose:1000,type:'error',position:'top-right'})
+                         toast('Phone digits must have at least 11 characters',{autoClose:1000,type:'error',position:"top-right"})
                          setSuccess(false)
+                         setErrorMessage("Phone digits must have at least 11 characters")
                         return;
                     }
 
@@ -63,12 +64,14 @@ function Signup() {
 
         else{
             toast('Phone number is not valid',{autoClose:1000,type:'error',position:'top-right'})
+            setErrorMessage("Phone is not valid")
             setSuccess(false)
         return;
     }
 
     if(emailRegex.test(email) == false){
         toast('Email is not valid',{autoClose:1000,type:'error',position:'top-right'})
+        setErrorMessage("Email is not valid")
         setSuccess(false);
         return;
     }
@@ -106,6 +109,7 @@ function Signup() {
     }).catch((err)=>{
         if(err){
             toast(err.message,{autoClose:1000,type:'error',position:'top-right'})
+            setErrorMessage(err.errMessage)
         }
         setSuccess(false)
         
@@ -117,7 +121,8 @@ function Signup() {
 
      else{
    
-      toast('Fields are empty, check',{autoClose:1000,type:'error',position:'top-right'})
+      toast('Fields are empty, check',{autoClose:1000,type:'error',position:toast.POSITION.TOP_RIGHT})
+      setErrorMessage("Field are empty, check")
       setSuccess(false)
  
      }
@@ -191,6 +196,8 @@ function Signup() {
     </FormControl>
 </div>
 <br/><br/>
+
+<div className="text-red-900 text-[12px] mt-[12px]">{errMessage ?<p>{errMessage}</p>: null}</div>
     <Button colorScheme='red' onClick={submit} className="w-[250px] mt-[20px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px]  "/>:<p className="text-[17px]">Register</p>}</Button>
     <div className="flex justify-center items-center mt-3 text-sm">
               <p>Already have an account? <span className="text-red-600 cursor-pointer font-bold text-sm" onClick={()=> router.push("/authentication/login")}>login</span></p>

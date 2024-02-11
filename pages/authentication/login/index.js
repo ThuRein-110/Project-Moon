@@ -65,6 +65,7 @@ const auth = getAuth(firebaseapp)
    }
    catch(err){
     console.log("ERROR")
+    setErrorMessage(err.message)
    }
    }
 
@@ -76,6 +77,7 @@ const auth = getAuth(firebaseapp)
     else{
       
       toast('Fields are empty, check',{autoClose:1000,type:'error',position:'top-right'})
+      setErrorMessage("Fields are empty, check")
       setSuccess(false)
 
     }
@@ -104,6 +106,8 @@ const auth = getAuth(firebaseapp)
 
            <Button colorScheme='red' onClick={loginInUser} className="w-[200px] mt-[30px] md:ml-[0px] p-[20px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Login</p>}</Button>
         </FormControl>
+
+        <div className="text-red-900 text-[12px] mt-[12px]">{errMessage ?<p>{errMessage}</p>: null}</div>
 
         <div className="flex justify-between flex-col mt-3 text-sm">
               <p>Do not have an account? <span className="text-red-600 cursor-pointer text-sm font-bold" onClick={()=> router.push("/authentication/signup")}>sign up</span></p>

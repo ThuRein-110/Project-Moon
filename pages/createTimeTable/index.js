@@ -23,6 +23,7 @@ function UserAccount(){
     const[courseDate, setcourseDate] = useState('')
     const [courseday,setDay] = useState('')
     const [success,setSuccess] = useState(false)
+    const[errMessage,setErrorMessage] = useState('')
     const router = useRouter();
     const[loading,setLoading] = useState(false)
     const projectfirestore = getFirestore(firebaseapp)
@@ -38,26 +39,34 @@ const goNav = ()=>{
 const createTimer = async(e)=>{
    e.preventDefault();
    setSuccess(true)
+if(venue == "" || course == "" || courseDate == "" || courseDay == "" || startTime == "" || endTime == ""){
+setErrorMessage("Fields cannot be empty")
+return;
+}
 
-   await updateDoc(doc(projectfirestore,"singleUserCourses",`${user?.email}`),{
-      saveCourses:arrayUnion({
-          courseName:course,
-          startTime:startTime,
-          endTime:endTime,
-          courseVenue:venue,
-          courseDate:courseDate,
-          courseDay: courseday
-          //userId:user.id
-      })
+else{
+  await updateDoc(doc(projectfirestore,"singleUserCourses",`${user?.email}`),{
+    saveCourses:arrayUnion({
+        courseName:course,
+        startTime:startTime,
+        endTime:endTime,
+        courseVenue:venue,
+        courseDate:courseDate,
+        courseDay: courseday
+        //userId:user.id
     })
+  })
+  setCourse('')
+  setStartTime('')
+  setEndTime('')
+  setVenue('')
+  setDay('')
+  setcourseDate('')
+  setSuccess(false)
+}
+   
   
-      setCourse('')
-      setStartTime('')
-      setEndTime('')
-      setVenue('')
-      setDay('')
-      setcourseDate('')
-      setSuccess(false)
+     
     
 }
    
@@ -109,6 +118,7 @@ useEffect(()=>{
           <input type="text" id="appt" name="appt"  required value={courseday} onChange={(e)=>setDay(e.target.value)} className="w-[200px] mt-2" placeholder="Monday"/>
           </div>
 <br/>
+<div className="text-red-900 text-[12px] mt-[12px]">{errMessage ?<p>{errMessage}</p>: null}</div>
           <Button colorScheme='red' onClick={createTimer} className="w-[250px] mt-3">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Save</p>}</Button>
           
           
