@@ -102,12 +102,12 @@ const auth = getAuth(firebaseapp)
           <Input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} />
           
 
-           <Button colorScheme='red' onClick={loginInUser} className="md:w-[350px] mt-[30px] md:ml-[0px] p-[20px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Login</p>}</Button>
+           <Button colorScheme='red' onClick={loginInUser} className="w-[200px] mt-[30px] md:ml-[0px] p-[20px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Login</p>}</Button>
         </FormControl>
 
-        <div className="flex justify-between mt-3 text-sm">
-              <p>Do not have an account? <span className="text-red-600 cursor-pointer font-bold" onClick={()=> router.push("/authentication/signup")}>SIGN UP</span></p>
-              <p className="text-red-600 cursor-pointer font-bold text-sm" onClick={()=>router.push("/forgotpwd")}>Forgot password?</p>
+        <div className="flex justify-between flex-col mt-3 text-sm">
+              <p>Do not have an account? <span className="text-red-600 cursor-pointer text-sm font-bold" onClick={()=> router.push("/authentication/signup")}>sign up</span></p>
+             
         </div>
        
         </div>

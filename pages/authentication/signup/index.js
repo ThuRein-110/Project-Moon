@@ -125,12 +125,12 @@ function Signup() {
     }
   return (
     <>
- <div className="w-[50%] m-auto md:mt-[50px] flex flex-col items-center align-center mt-[60px]">
+ <div className="w-[50%] m-auto md:mt-[50px] flex flex-col items-center align-center mt-[120px]">
  <div>
             <h2 className="text-center text-2xl font-bold">Sign Up</h2>
           </div>
-<br/>
-          <div className="flex flex-row gap-3">
+<br/><br/>
+          <div className="flex flex-row gap-3 mt-[40px] text-sm">
           <FormControl>
       <FormLabel>Name</FormLabel>
       <Input type='text' value={name} onChange={(e)=>setName(e.target.value)}  placeholder="Aderoju Muhammed"/>
@@ -143,9 +143,9 @@ function Signup() {
      
     </FormControl>
 
-          </div><br/>
+          </div><br/><br/>
 
-<div className="flex flex-row gap-3 ">
+<div className="flex flex-row gap-3 text-sm mt-[15px] ">
 <FormControl>
       <FormLabel>Level</FormLabel>
       <Input type='text' value={level} onChange={(e)=>setLevel(e.target.value)}  placeholder="200 lvl" />
@@ -159,9 +159,9 @@ function Signup() {
      
     </FormControl>
 </div>
-    <br/>
+    <br/><br/>
 
-    <div className="flex gap-3">
+    <div className="flex gap-3 text-sm mt-[15px]">
 
      <FormControl>
       <FormLabel>Email</FormLabel>
@@ -174,9 +174,9 @@ function Signup() {
       <FormLabel>Semester</FormLabel>
       <Input type='text' value={semester} onChange={(e)=>setSemester(e.target.value)} placeholder="first semester" />
       
-    </FormControl></div><br/>
+    </FormControl></div><br/><br/>
 
-    <div className="flex gap-3">
+    <div className="flex gap-3 text-sm mt-[15px]">
 
 <FormControl>
  <FormLabel>Phone No</FormLabel>
@@ -190,10 +190,10 @@ function Signup() {
      
     </FormControl>
 </div>
-<br/>
-    <Button colorScheme='red' onClick={submit} className="md:w-[350px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Register</p>}</Button>
-    <div className="flex justify-center items-center mt-3">
-              <p>Already have an account? <span className="text-red-600 cursor-pointer font-bold" onClick={()=> router.push("/authentication/login")}>LOGIN</span></p>
+<br/><br/>
+    <Button colorScheme='red' onClick={submit} className="w-[250px] mt-[20px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px]  "/>:<p className="text-[17px]">Register</p>}</Button>
+    <div className="flex justify-center items-center mt-3 text-sm">
+              <p>Already have an account? <span className="text-red-600 cursor-pointer font-bold text-sm" onClick={()=> router.push("/authentication/login")}>login</span></p>
              
         </div>
 
