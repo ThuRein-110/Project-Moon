@@ -87,7 +87,7 @@ useEffect(()=>{
  return(
 
         <>
-       <div className="md:mt-[140px] w-[50%] m-auto flex justify-center align-center text-sm mt-[100px] ">
+       <div className="md:mt-[140px] w-[50%] m-auto flex justify-center align-center text-sm mt-[50px] ">
 
         
             
@@ -103,7 +103,7 @@ useEffect(()=>{
         <div><label className="font-bold text-red-600 mb-[10px] text-[13px]" >Venue</label><br/>
         <Input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className="  w-[300px]"/></div><br/>
   <div>
-    <h1 className="text-center text-[15px] font-bold mt-[20px] mb-[20px]">Course Duration</h1>
+    <h1 className="text-center text-[15px] font-bold mt-[10px] mb-[20px]">Course Duration</h1>
             <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> Start Time</label><br/>
 
           <Input type="time" id="appt" name="appt" className="w-[250px]" required value={startTime} onChange={(e)=>setStartTime(e.target.value)} />
