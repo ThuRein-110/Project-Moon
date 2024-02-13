@@ -106,23 +106,23 @@ useEffect(()=>{
     <h1 className="text-center text-[15px] font-bold mt-[20px] mb-[20px]">Course Duration</h1>
             <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> Start Time</label><br/>
 
-          <input type="time" id="appt" name="appt" className="w-[250px]" required value={startTime} onChange={(e)=>setStartTime(e.target.value)} />
+          <Input type="time" id="appt" name="appt" className="w-[250px]" required value={startTime} onChange={(e)=>setStartTime(e.target.value)} />
           
           </div><br/>
 
           <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> End Time</label><br/>
 
-<input type="time" id="appt" name="appt" className="w-[250px]" required value={endTime} onChange={(e)=>setEndTime(e.target.value)} />
+<Input type="time" id="appt" name="appt" className="w-[250px]" required value={endTime} onChange={(e)=>setEndTime(e.target.value)} />
 
 </div></div><br/>
 
           <div>
           <label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]">Date</label><br/>
-          <input type="date" id="appt" name="appt"  required value={courseDate} onChange={(e)=>setcourseDate(e.target.value)} className="w-[200px] mt-2" />
+          <Input type="date" id="appt" name="appt"  required value={courseDate} onChange={(e)=>setcourseDate(e.target.value)} className="w-[200px] mt-2" />
           </div> <br/>
           <div>
           <label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]">Day of the week</label><br/>
-          <input type="text" id="appt" name="appt"  required value={courseday} onChange={(e)=>setDay(e.target.value)} className="w-[200px] mt-2" placeholder="Monday"/>
+          <Input type="text" id="appt" name="appt"  required value={courseday} onChange={(e)=>setDay(e.target.value)} className="w-[200px] mt-2" placeholder="Monday"/>
           </div>
 <br/>
 <div className="text-red-900 text-[12px] mt-[12px]">{errMessage ?<p>{errMessage}</p>: null}</div>
