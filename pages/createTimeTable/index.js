@@ -12,6 +12,13 @@ import { updateDoc,arrayUnion, onSnapshot } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from "firebase/storage";
 import { Auth } from '../../Firebase/context';
 import {ImSpinner8} from 'react-icons/im'
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+  Input
+} from '@chakra-ui/react'
 
 function UserAccount(){
     
@@ -91,10 +98,10 @@ useEffect(()=>{
             <h1 className="font-bold text-[20px] mb-[25px] text-center">Enter Your Lectures Details</h1>
 
         <div><label className="font-bold text-red-600 mb-[10px] text-[13px]">Course title</label><br/>
-        <input type="text" value={course} onChange={(e)=>setCourse(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
+        <Input type="text" value={course} onChange={(e)=>setCourse(e.target.value)} className="  w-[300px]"/></div><br/>
 
         <div><label className="font-bold text-red-600 mb-[10px] text-[13px]" >Venue</label><br/>
-        <input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className=" border-b-2 w-[300px]"/></div><br/>
+        <Input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className="  w-[300px]"/></div><br/>
   <div>
     <h1 className="text-center text-[15px] font-bold mt-[20px] mb-[20px]">Course Duration</h1>
             <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> Start Time</label><br/>
