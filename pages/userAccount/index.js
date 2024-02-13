@@ -233,7 +233,7 @@ const getUserTimeTable = async ()=>{
 
 <div className="flex items-center justify-center mt-3 ">
 
-<button colorScheme='white' onClick={logout}><p className="text-[13px] p-[2px] border-red-700 rounded-2xl font-bold text-2xl border-[1px] w-[100px]">Logout</p></button></div>
+<button  onClick={logout}><p className="text-[13px] p-[2px] bg-red-600 text-white rounded-2xl font-bold text-2xl border-[1px] w-[100px]">Logout</p></button></div>
            
 
 
