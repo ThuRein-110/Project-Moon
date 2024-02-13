@@ -130,12 +130,12 @@ function Signup() {
     }
   return (
     <>
- <div className="w-[50%] m-auto md:mt-[50px] flex flex-col items-center align-center mt-[120px]">
+ <div className="w-[50%] m-auto md:mt-[50px] flex flex-col items-center align-center mt-[60px]">
  <div>
             <h2 className="text-center text-2xl font-bold">Sign Up</h2>
           </div>
 <br/><br/>
-          <div className="flex flex-row gap-3 mt-[40px] text-sm">
+          <div className="flex flex-col gap-3 mt-[20px] text-sm">
           <FormControl>
       <FormLabel>Name</FormLabel>
       <Input type='text' value={name} onChange={(e)=>setName(e.target.value)}  placeholder="Aderoju Muhammed"/>
@@ -150,7 +150,7 @@ function Signup() {
 
           </div><br/><br/>
 
-<div className="flex flex-row gap-3 text-sm mt-[15px] ">
+<div className="flex flex-col gap-3 text-sm mt-[15px] ">
 <FormControl>
       <FormLabel>Level</FormLabel>
       <Input type='text' value={level} onChange={(e)=>setLevel(e.target.value)}  placeholder="200 lvl" />
@@ -166,7 +166,7 @@ function Signup() {
 </div>
     <br/><br/>
 
-    <div className="flex gap-3 text-sm mt-[15px]">
+    <div className="flex gap-3 text-sm mt-[15px] flex-col">
 
      <FormControl>
       <FormLabel>Email</FormLabel>
@@ -181,7 +181,7 @@ function Signup() {
       
     </FormControl></div><br/><br/>
 
-    <div className="flex gap-3 text-sm mt-[15px]">
+    <div className="flex gap-3 text-sm mt-[15px] flex-col">
 
 <FormControl>
  <FormLabel>Phone No</FormLabel>
