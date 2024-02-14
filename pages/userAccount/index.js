@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import {useRouter} from "next/navigation"
@@ -11,6 +13,9 @@ import {getFirestore} from "firebase/firestore"
 import { Auth } from '../../Firebase/context';
 import {ImSpinner8} from 'react-icons/im'
 import {setDoc,doc,updateDoc} from "firebase/firestore"
+import {Html} from "@react-email/html"
+import {Resend} from 'resend';
+
 
 function UserAccount(){
     const[userDetails, setUserDetails] = useState({})
@@ -22,6 +27,8 @@ function UserAccount(){
     const [loading, setLoading] = useState(true)
     const projectfirestore = getFirestore(firebaseapp)
 const {user} = useContext(Auth)
+
+const resend = new Resend("re_WpWFujBs_4tpirRS5MqJyYpsvRZbyKCwK")
 
 const goNav = ()=>{
     router.push("/createTimeTable");
@@ -67,6 +74,24 @@ const getUserTimeTable = async ()=>{
           }
   
           console.log(userDetails)
+  }
+
+  const getNotified = async()=>{
+    var dateValue = new Date();
+        for(i=0; i<courses.length; i++){
+            if(dateValue.getDay() == courses[i].courseDay && dateValue.getTime() == courses[i].startTime){
+                resend.sendEmail({
+                    from:"hikay133@gmail.com",
+                    to:user?.email,
+                    subject:"Lectures Reminder",
+                    react:'<div><div>charles</div><div>'
+
+                })
+
+                alert("Remind Me")
+
+            }
+        }
   }
 
   useEffect(()=>{
@@ -210,7 +235,7 @@ const getUserTimeTable = async ()=>{
             </div>
 <br/>
 
-
+<button className="bg-red-600 text-white p-[3px] w-[100px]" onClick={getNotified}>Notify Me</button>
  
          </div>): 
          
