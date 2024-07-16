@@ -76,14 +76,19 @@ const getUserTimeTable = async ()=>{
   }
 
   const getNotified = async()=>{
-    alert("Me");
+
+    const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    
     var dateValue = new Date();
+    var day = weekday[dateValue.getDay()]
     var i;
         for(i=0; i<courses.length; i++){
-            if(dateValue.getDay() == courses[i].courseDay && dateValue.getTime() == courses[i].startTime){
+           //alert(dateValue.getDay())
+            if(day == courses[i].courseDay ){
                
+                const notifyMe = `${courses[i].courseName} || ${ courses[i].courseVenue} || ${ courses[i]. startTime}`
 
-                alert(courses[i].courseName, courses[i].courseVenue, courses[i].startTime - courses[i].endTime)
+                alert(notifyMe);
 
             }
         }

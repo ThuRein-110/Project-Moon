@@ -17,7 +17,7 @@ export default function Home() {
 
         <div className="flex items-center justify-center flex-col mt-[250px]">
           <div>
-            <h1 className='text-red-600 bold text-[25px] text-center'>RemindMe</h1>
+            <h1 className='text-red-600 bold text-[25px] text-center'>NOTIFY ME SCHEDULE</h1>
             <p className="text-center text-[12px] mt-[2px] ">Get notified ahead of time of your lectures & classes</p>
             
             
