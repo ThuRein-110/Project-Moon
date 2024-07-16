@@ -86,7 +86,7 @@ const getUserTimeTable = async ()=>{
            //alert(dateValue.getDay())
             if(day == courses[i].courseDay ){
                
-                const notifyMe = `${courses[i].courseName} || ${ courses[i].courseVenue} || ${ courses[i]. startTime}`
+                const notifyMe = ` Course Name: ${courses[i].courseName}  ||  Lecture Venue: ${ courses[i].courseVenue}  ||  Duration: ${ courses[i]. startTime} - ${ courses[i]. endTime}`
 
                 alert(notifyMe);
 
