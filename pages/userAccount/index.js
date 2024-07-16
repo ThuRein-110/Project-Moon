@@ -92,9 +92,13 @@ const getUserTimeTable = async ()=>{
 
   useEffect(()=>{
      getUserDetails();
-     getUserTimeTable();
-     getNotified();
-  },[getUserDetails])
+    
+    
+  },[user]);
+
+  useEffect(()=>{
+    getUserTimeTable();
+  },[user])
 
   
 
@@ -230,7 +234,7 @@ const getUserTimeTable = async ()=>{
             </div>
 <br/>
 
-<button className="bg-red-600 text-white p-[3px] w-[100px]" onClick={getNotified}>Notify Me</button>
+
  
          </div>): 
          
@@ -251,8 +255,8 @@ const getUserTimeTable = async ()=>{
 
          
 
-<div className="flex items-left justify-left mt-3 ">
-
+<div className="flex items-left justify-left mt-3 gap-3 ">
+<button className="text-[13px] p-[2px] bg-red-600 text-white rounded-2xl font-bold text-2xl  w-[100px]" onClick={getNotified}>Notify Me</button>
 <button  onClick={logout}><p className="text-[13px] p-[2px] bg-red-600 text-white rounded-2xl font-bold text-2xl  w-[100px]">Logout</p></button></div>
            
 
