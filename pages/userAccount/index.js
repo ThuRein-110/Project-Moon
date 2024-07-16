@@ -83,7 +83,13 @@ const getUserTimeTable = async ()=>{
     var day = weekday[dateValue.getDay()]
     var i;
         for(i=0; i<courses.length; i++){
-           //alert(dateValue.getDay())
+          
+           var hourofLecture = dateValue.getHours()
+           var minuteofLecture = dateValue.getMinutes();
+
+           var timeOflecture = `${hourofLecture} ":" ${minuteofLecture}`
+
+           var appointLecture = courses[i].startTime
             if(day == courses[i].courseDay ){
                
                 const notifyMe = ` Course Name: ${courses[i].courseName}  ||  Lecture Venue: ${ courses[i].courseVenue}  ||  Duration: ${ courses[i]. startTime} - ${ courses[i]. endTime}`
@@ -105,6 +111,8 @@ const getUserTimeTable = async ()=>{
   useEffect(()=>{
     getUserTimeTable();
   },[user])
+
+  
 
   
 
@@ -244,8 +252,8 @@ const getUserTimeTable = async ()=>{
  
          </div>): 
          
-         ( <div className="flex flex-col gap-3  mt-[150px] items-center justify-center"><p>No course details available</p>
-            <button  onClick={goNav}><p className="text-[13px]  text-red-500 p-[2px] w-[160px] font-bold text-2xl mb-3">Enter Course Details</p></button>
+         ( <div className="flex flex-col gap-3  mt-[50px] items-left justify-left"><p>No course details available</p>
+            <button  onClick={goNav}><p className="text-[13px]  text-red-500 p-[2px] w-[160px] font-bold text-2xl mb-3 text-left">Enter Course Details</p></button>
             </div>)
             
             

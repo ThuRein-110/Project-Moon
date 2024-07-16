@@ -98,7 +98,7 @@ useEffect(()=>{
 
         <div>
 
-            <h1 className="font-bold text-[20px] mb-[25px] text-center">Enter Your Lectures Details</h1>
+            <h1 className="font-bold text-[20px] mb-[30px] text-left">ENTER COURSE DETAILS</h1>
 
        <div className="flex-col flex md:flex-row gap-3">
        <div><label className="font-bold text-red-600 mb-[10px] text-[13px]">Course title</label><br/>
@@ -112,7 +112,7 @@ useEffect(()=>{
 
        
   <div><br/>
-    <h1 className="text-center text-[15px] font-bold mt-[10px] mb-[20px]">LECTURE DURATION</h1>
+    <h1 className="text-left text-[15px] font-bold mt-[10px] mb-[20px]">LECTURE DURATION</h1>
 
     <div className="flex-col flex md:flex-row gap-3">
     <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> Start Time</label><br/>
@@ -129,7 +129,7 @@ useEffect(()=>{
            
 
   </div> <br/>
-
+  <h1 className="text-left text-[15px] font-bold mt-[10px] mb-[20px]">DAY OF LECTURE</h1>
   <div className="flex-col flex md:flex-row gap-3">
   <div>
           <label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]">Date</label><br/>
