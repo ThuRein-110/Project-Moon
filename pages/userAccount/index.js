@@ -27,7 +27,7 @@ function UserAccount(){
     const projectfirestore = getFirestore(firebaseapp)
 const {user} = useContext(Auth)
 
-const resend = new Resend("re_WpWFujBs_4tpirRS5MqJyYpsvRZbyKCwK")
+
 
 const goNav = ()=>{
     router.push("/createTimeTable");
