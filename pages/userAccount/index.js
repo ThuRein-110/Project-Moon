@@ -87,10 +87,11 @@ const getUserTimeTable = async ()=>{
            var hourofLecture = dateValue.getHours()
            var minuteofLecture = dateValue.getMinutes();
 
-           var timeOflecture = `${hourofLecture} ":" ${minuteofLecture}`
+           var timeOflecture = `${hourofLecture}:${minuteofLecture}`
 
            var appointLecture = courses[i].startTime
-            if(day == courses[i].courseDay ){
+            if(day == courses[i].courseDay && timeOflecture == appointLecture ){
+                alert(timeOflecture);
                
                 const notifyMe = ` Course Name: ${courses[i].courseName}  ||  Lecture Venue: ${ courses[i].courseVenue}  ||  Duration: ${ courses[i]. startTime} - ${ courses[i]. endTime}`
 
