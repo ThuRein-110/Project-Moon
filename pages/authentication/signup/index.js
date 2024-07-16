@@ -132,7 +132,7 @@ function Signup() {
     <>
  <div className="w-[50%] m-auto md:mt-[50px] flex flex-col items-center align-center mt-[60px]">
  <div>
-            <h2 className="text-center text-2xl font-bold">Sign Up</h2>
+            <h2 className="text-center text-2xl font-bold">Create Account</h2>
           </div>
 
           <div className="flex flex-col gap-3 mt-[20px] text-sm md:flex-row">

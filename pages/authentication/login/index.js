@@ -50,6 +50,7 @@ const auth = getAuth(firebaseapp)
       if(emailRegex.test(email) == false){
         toast('Email is not valid',{autoClose:1000,type:'error',position:'top-right'})
         setSuccess(false);
+        setLoading(false);
         return;
     }
 
@@ -61,11 +62,14 @@ const auth = getAuth(firebaseapp)
        router.push("/createTimeTable")
      }, 3000)
     })
-    setSuccess(false)
+    setSuccess(false);
+    setLoading(false);
    }
    catch(err){
     console.log("ERROR")
-    setErrorMessage(err.message)
+    setErrorMessage(err.message);
+    setLoading(false);
+    setSuccess(false);
    }
    }
 
@@ -78,7 +82,8 @@ const auth = getAuth(firebaseapp)
       
       toast('Fields are empty, check',{autoClose:1000,type:'error',position:'top-right'})
       setErrorMessage("Fields are empty, check")
-      setSuccess(false)
+      setSuccess(false);
+      setLoading(false);
 
     }
    
