@@ -94,7 +94,7 @@ const getUserTimeTable = async ()=>{
      getUserDetails();
      getUserTimeTable();
      getNotified();
-  },[user])
+  },[getUserDetails])
 
   
 
