@@ -90,6 +90,7 @@ const getUserTimeTable = async ()=>{
            var timeOflecture = `${hourofLecture}:${minuteofLecture}`
 
            var appointLecture = courses[i].startTime
+
             if(day == courses[i].courseDay && timeOflecture == appointLecture ){
               
                
@@ -117,7 +118,7 @@ const getUserTimeTable = async ()=>{
     setTimeout(()=>{
         getNotified();
       
-    },4000);
+    },5000);
   },[user])
 
   
@@ -160,7 +161,7 @@ const getUserTimeTable = async ()=>{
             <h1 className="text-left font-bold text-[20px] mt-[30px]">Courses Schedules</h1>
             
             
-         {courses ? (<div className="flex flex-col items-left justify-left">
+         {courses.length > 0 ? (<div className="flex flex-col items-left justify-left">
    <div className="mt-[20px] md:p-0 p-3">
                
                 {
