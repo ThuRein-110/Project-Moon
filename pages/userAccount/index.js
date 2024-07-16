@@ -13,8 +13,7 @@ import {getFirestore} from "firebase/firestore"
 import { Auth } from '../../Firebase/context';
 import {ImSpinner8} from 'react-icons/im'
 import {setDoc,doc,updateDoc} from "firebase/firestore"
-import {Html} from "@react-email/html"
-import {Resend} from 'resend';
+
 
 
 function UserAccount(){
@@ -89,18 +88,15 @@ const getUserTimeTable = async ()=>{
         }
   }
 
-  useEffect(()=>{
-   
-    getUserTimeTable();
-  },[user])
+  
 
   useEffect(()=>{
      getUserDetails();
+     getUserTimeTable();
+     getNotified();
   },[user])
 
-  useEffect(()=>{
-    getNotified()
-  },[user])
+  
 
   if(loading){
     return(
