@@ -91,7 +91,7 @@ const getUserTimeTable = async ()=>{
 
            var appointLecture = courses[i].startTime
             if(day == courses[i].courseDay && timeOflecture == appointLecture ){
-                alert(timeOflecture);
+              
                
                 const notifyMe = ` Course Name: ${courses[i].courseName}  ||  Lecture Venue: ${ courses[i].courseVenue}  ||  Duration: ${ courses[i]. startTime} - ${ courses[i]. endTime}`
 
@@ -111,6 +111,13 @@ const getUserTimeTable = async ()=>{
 
   useEffect(()=>{
     getUserTimeTable();
+  },[user]);
+
+  useEffect(()=>{
+    setTimeout(()=>{
+        getNotified();
+      
+    },4000);
   },[user])
 
   
