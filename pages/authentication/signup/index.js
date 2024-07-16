@@ -134,8 +134,8 @@ function Signup() {
  <div>
             <h2 className="text-center text-2xl font-bold">Sign Up</h2>
           </div>
-<br/><br/>
-          <div className="flex flex-col gap-3 mt-[20px] text-sm">
+
+          <div className="flex flex-col gap-3 mt-[20px] text-sm md:flex-row">
           <FormControl>
       <FormLabel>Name</FormLabel>
       <Input type='text' value={name} onChange={(e)=>setName(e.target.value)}  placeholder="Aderoju Muhammed"/>
@@ -148,9 +148,9 @@ function Signup() {
      
     </FormControl>
 
-          </div><br/><br/>
+          </div>
 
-<div className="flex flex-col gap-3 text-sm mt-[15px] ">
+<div className="flex flex-col gap-3 text-sm mt-[15px] md:flex-row">
 <FormControl>
       <FormLabel>Level</FormLabel>
       <Input type='text' value={level} onChange={(e)=>setLevel(e.target.value)}  placeholder="200 lvl" />
@@ -164,9 +164,9 @@ function Signup() {
      
     </FormControl>
 </div>
-    <br/><br/>
+    
 
-    <div className="flex gap-3 text-sm mt-[15px] flex-col">
+    <div className="flex gap-3 text-sm mt-[15px] flex-col md:flex-row">
 
      <FormControl>
       <FormLabel>Email</FormLabel>
@@ -179,9 +179,9 @@ function Signup() {
       <FormLabel>Semester</FormLabel>
       <Input type='text' value={semester} onChange={(e)=>setSemester(e.target.value)} placeholder="first semester" />
       
-    </FormControl></div><br/><br/>
+    </FormControl></div>
 
-    <div className="flex gap-3 text-sm mt-[15px] flex-col">
+    <div className="flex gap-3 text-sm mt-[15px] flex-col md:flex-row">
 
 <FormControl>
  <FormLabel>Phone No</FormLabel>
@@ -195,7 +195,7 @@ function Signup() {
      
     </FormControl>
 </div>
-<br/><br/>
+
 
 <div className="text-red-900 text-[12px] mt-[12px]">{errMessage ?<p>{errMessage}</p>: null}</div>
     <Button colorScheme='red' onClick={submit} className="w-[250px] mt-[20px]">{success ?<ImSpinner8 className="text-white animate-spin w-[30px]  "/>:<p className="text-[17px]">Register</p>}</Button>

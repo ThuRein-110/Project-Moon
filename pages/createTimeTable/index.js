@@ -28,7 +28,7 @@ function UserAccount(){
     const [userToken, setToken] = useState('')
     const[venue,setVenue] = useState('')
     const[courseDate, setcourseDate] = useState('')
-    const [courseday,setDay] = useState('')
+    const [courseDay,setDay] = useState('')
     const [success,setSuccess] = useState(false)
     const[errMessage,setErrorMessage] = useState('')
     const router = useRouter();
@@ -45,9 +45,11 @@ const goNav = ()=>{
 }
 const createTimer = async(e)=>{
    e.preventDefault();
-   setSuccess(true)
+   setSuccess(true);
+   setLoading(true)
 if(venue == "" || course == "" || courseDate == "" || courseDay == "" || startTime == "" || endTime == ""){
 setErrorMessage("Fields cannot be empty")
+setLoading(false)
 return;
 }
 
@@ -59,7 +61,7 @@ else{
         endTime:endTime,
         courseVenue:venue,
         courseDate:courseDate,
-        courseDay: courseday
+        courseDay: courseDay
         //userId:user.id
     })
   })
@@ -69,7 +71,8 @@ else{
   setVenue('')
   setDay('')
   setcourseDate('')
-  setSuccess(false)
+  setSuccess(false);
+  setLoading(false);
 }
    
   
@@ -87,7 +90,7 @@ useEffect(()=>{
  return(
 
         <>
-       <div className="md:mt-[140px] w-[50%] m-auto flex justify-center align-center text-sm mt-[50px] ">
+       <div className="md:mt-[60px] w-[50%] m-auto flex justify-center align-center text-sm mt-[20px] ">
 
         
             
@@ -97,38 +100,55 @@ useEffect(()=>{
 
             <h1 className="font-bold text-[20px] mb-[25px] text-center">Enter Your Lectures Details</h1>
 
-        <div><label className="font-bold text-red-600 mb-[10px] text-[13px]">Course title</label><br/>
-        <Input type="text" value={course} onChange={(e)=>setCourse(e.target.value)} className="  w-[300px]"/></div><br/>
+       <div className="flex-col flex md:flex-row gap-3">
+       <div><label className="font-bold text-red-600 mb-[10px] text-[13px]">Course title</label><br/>
+       <Input type="text" value={course} onChange={(e)=>setCourse(e.target.value)} className="  w-[300px]"/></div>
 
-        <div><label className="font-bold text-red-600 mb-[10px] text-[13px]" >Venue</label><br/> 
-        <Input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className="  w-[300px]"/></div><br/>
-  <div><br/><hr/>
-    <h1 className="text-center text-[15px] font-bold mt-[10px] mb-[20px]">Lecture Duration</h1>
-            <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> Start Time</label><br/>
+       <div><label className="font-bold text-red-600 mb-[10px] text-[13px]" >Venue</label><br/> 
+        <Input type="text" value={venue} onChange={(e)=>setVenue(e.target.value)} className="  w-[300px]"/></div>
+       </div>
+       
+        
 
-          <Input type="time" id="appt" name="appt" className="w-[250px]" required value={startTime} onChange={(e)=>setStartTime(e.target.value)} />
-          
-          </div><br/>
+       
+  <div><br/>
+    <h1 className="text-center text-[15px] font-bold mt-[10px] mb-[20px]">LECTURE DURATION</h1>
 
-          <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> End Time</label><br/>
+    <div className="flex-col flex md:flex-row gap-3">
+    <div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> Start Time</label><br/>
+
+<Input type="time" id="appt" name="appt" className="w-[250px]" required value={startTime} onChange={(e)=>setStartTime(e.target.value)} />
+
+</div>
+<div><label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]"> End Time</label><br/>
 
 <Input type="time" id="appt" name="appt" className="w-[250px]" required value={endTime} onChange={(e)=>setEndTime(e.target.value)} />
 
-</div></div><br/><hr/><br/>
+</div>
+    </div>
+           
 
-          <div>
+  </div> <br/>
+
+  <div className="flex-col flex md:flex-row gap-3">
+  <div>
           <label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]">Date</label><br/>
           <Input type="date" id="appt" name="appt"  required value={courseDate} onChange={(e)=>setcourseDate(e.target.value)} className="w-[200px] mt-2" />
-          </div> <br/>
+          </div>
+
           <div>
           <label for="appt" className="font-bold text-red-600 mb-[10px] text-[13px]">Day of the week</label><br/>
-          <Input type="text" id="appt" name="appt"  required value={courseday} onChange={(e)=>setDay(e.target.value)} className="w-[200px] mt-2" placeholder="Monday"/>
+          <Input type="text" id="appt" name="appt"  required value={courseDay} onChange={(e)=>setDay(e.target.value)} className="w-[200px] mt-2" placeholder="Monday"/>
           </div>
+  </div>
+
+           
+         
 <br/>
 <div className="text-red-900 text-[12px] mt-[12px]">{errMessage ?<p>{errMessage}</p>: null}</div>
-          <Button colorScheme='red' onClick={createTimer} className="w-[250px] mt-3">{success ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Save</p>}</Button>
+          <Button colorScheme='red' onClick={createTimer} className="w-[250px] mt-3">{loading ?<ImSpinner8 className="text-white animate-spin w-[30px] "/>:<p className="text-[17px]">Save</p>}</Button>
           
-          
+          &nbsp; &nbsp;
           <Button colorScheme='red' onClick={goNav} className="w-[250px] mt-3"><p className="text-[17px]">Load Time-Table</p></Button>
 
         </div>

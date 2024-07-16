@@ -92,7 +92,7 @@ const auth = getAuth(firebaseapp)
         <>
         <div className="w-[50%] m-auto md:mt-[10%] mt-[200px]">
           <div>
-            <h2 className="text-center text-2xl font-bold">Login</h2>
+            <h2 className="text-center text-2xl font-bold">Sign In</h2>
           </div>
          <FormControl>
           <FormLabel>Email</FormLabel>

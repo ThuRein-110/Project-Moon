@@ -78,17 +78,12 @@ const getUserTimeTable = async ()=>{
 
   const getNotified = async()=>{
     var dateValue = new Date();
+    var i;
         for(i=0; i<courses.length; i++){
             if(dateValue.getDay() == courses[i].courseDay && dateValue.getTime() == courses[i].startTime){
-                resend.sendEmail({
-                    from:"hikay133@gmail.com",
-                    to:user?.email,
-                    subject:"Lectures Reminder",
-                    react:'<div><div>charles</div><div>'
+               
 
-                })
-
-                alert("Remind Me")
+                alert(courses[i].courseName, courses[i].courseVenue, courses[i].startTime - courses[i].endTime)
 
             }
         }
@@ -101,6 +96,10 @@ const getUserTimeTable = async ()=>{
 
   useEffect(()=>{
      getUserDetails();
+  },[user])
+
+  useEffect(()=>{
+    getNotified()
   },[user])
 
   if(loading){
@@ -136,10 +135,10 @@ const getUserTimeTable = async ()=>{
                 </div>
                 
             </div>
-            <h1 className="text-center font-bold text-[20px] mt-[30px]">Courses Schedules</h1>
+            <h1 className="text-left font-bold text-[20px] mt-[30px]">Courses Schedules</h1>
             
             
-         {courses ? (<div className="flex flex-col items-center justify-center">
+         {courses ? (<div className="flex flex-col items-left justify-left">
    <div className="mt-[20px] md:p-0 p-3">
                
                 {
@@ -149,7 +148,7 @@ const getUserTimeTable = async ()=>{
                         return(
                             <>
                             <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
-                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} </div>
                             </>
                         )
                        }
@@ -167,7 +166,7 @@ const getUserTimeTable = async ()=>{
                         return(
                             <>
                             <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
-                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item?.startTime} - {item?.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item?.startTime} - {item?.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} </div>
                             </>
                         )
                        }
@@ -187,7 +186,7 @@ const getUserTimeTable = async ()=>{
                         return(
                             <>
                             <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
-                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} </div>
                             </>
                         )
                        }
@@ -208,7 +207,7 @@ const getUserTimeTable = async ()=>{
                         return(
                             <>
                             <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
-                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} </div>
                             </>
                         )
                        }
@@ -226,7 +225,7 @@ const getUserTimeTable = async ()=>{
                         return(
                             <>
                             <div className="mb-[10px] font-bold">{item.courseDay ? <h1>{item.courseDay}</h1>:null}</div>
-                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} <MdEdit /></div>
+                            <div className="mb-[10px] flex gap-3" key={index}>{item?.courseName} &nbsp;<span className="text-red-600 font-bold" >||</span>  {item.startTime} - {item.endTime} &nbsp;<span className="text-red-600 font-bold">||</span>  {item.courseVenue} </div>
                             </>
                         )
                        }
@@ -256,7 +255,7 @@ const getUserTimeTable = async ()=>{
 
          
 
-<div className="flex items-center justify-center mt-3 ">
+<div className="flex items-left justify-left mt-3 ">
 
 <button  onClick={logout}><p className="text-[13px] p-[2px] bg-red-600 text-white rounded-2xl font-bold text-2xl  w-[100px]">Logout</p></button></div>
            
