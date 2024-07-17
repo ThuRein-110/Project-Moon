@@ -76,13 +76,14 @@ const getUserTimeTable = async ()=>{
   }
 
   const getNotified = async()=>{
-
+    
     const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     
     var dateValue = new Date();
     var day = weekday[dateValue.getDay()]
     var i;
-        for(i=0; i<courses.length; i++){
+  
+        for(i=0; i < courses.length; i++){
           
            var hourofLecture = dateValue.getHours()
            var minuteofLecture = dateValue.getMinutes();
@@ -90,8 +91,14 @@ const getUserTimeTable = async ()=>{
            var timeOflecture = `${hourofLecture}:${minuteofLecture}`
 
            var appointLecture = courses[i].startTime
-
-            if(day == courses[i].courseDay && timeOflecture == appointLecture ){
+          console.log(timeOflecture === courses[i].startTime);
+          console.log(courses[i].startTime)
+          console.log(timeOflecture);
+          var nowLecture;
+        if(courses[i].startTime.startsWith("0")){
+            nowLecture = courses[i].startTime.substr(1);
+        }
+            if(day == courses[i].courseDay && timeOflecture === nowLecture ){
               
                
                 const notifyMe = ` Course Name: ${courses[i].courseName}  ||  Lecture Venue: ${ courses[i].courseVenue}  ||  Duration: ${ courses[i]. startTime} - ${ courses[i]. endTime}`
@@ -115,11 +122,11 @@ const getUserTimeTable = async ()=>{
   },[user]);
 
   useEffect(()=>{
-    setTimeout(()=>{
+    setInterval(()=>{
         getNotified();
-      
-    },5000);
-  },[user])
+    },1000)
+  }
+  );
 
   
 
@@ -161,7 +168,7 @@ const getUserTimeTable = async ()=>{
             <h1 className="text-left font-bold text-[20px] mt-[30px]">Courses Schedules</h1>
             
             
-         {courses.length > 0 ? (<div className="flex flex-col items-left justify-left">
+         {courses?.length > 0 ? (<div className="flex flex-col items-left justify-left">
    <div className="mt-[20px] md:p-0 p-3">
                
                 {
