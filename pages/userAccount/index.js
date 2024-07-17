@@ -98,6 +98,10 @@ const getUserTimeTable = async ()=>{
         if(courses[i].startTime.startsWith("0")){
             nowLecture = courses[i].startTime.substr(1);
         }
+
+        else{
+            nowLecture = appointLecture
+        }
             if(day == courses[i].courseDay && timeOflecture === nowLecture ){
               
                
