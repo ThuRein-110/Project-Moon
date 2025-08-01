@@ -1,20 +1,17 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyAqPO7vGKJ-MA5FssgKLi6jjgj4gCwYV6M",
-    authDomain: "remindme-465ab.firebaseapp.com",
-    projectId: "remindme-465ab",
-    storageBucket: "remindme-465ab.appspot.com",
-    messagingSenderId: "818223577462",
-    appId: "1:818223577462:web:041f50e8f3773b5845a257",
-    measurementId: "G-LN6GD60CYK"
+  apiKey: "AIzaSyB5cmqd1bTJeeJEcE2y23BK2wecjedWni8",
+  authDomain: "portfolio-aabd7.firebaseapp.com",
+  databaseURL: "https://portfolio-aabd7-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "portfolio-aabd7",
+  storageBucket: "portfolio-aabd7.firebasestorage.app",
+  messagingSenderId: "995755404255",
+  appId: "1:995755404255:web:80e89cc88246b0abdef26a",
+  measurementId: "G-9QSJ3TH813"
 };
 
-// Initialize Firebase
-export const firebaseapp = initializeApp(firebaseConfig);
+// Initialize Firebase only if it hasn't been initialized yet
+export const firebaseapp = getApps().length === 0
+  ? initializeApp(firebaseConfig)
+  : getApps()[0];
